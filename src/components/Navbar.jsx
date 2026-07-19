@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 import { LogOut, Moon, ShoppingCart, Sun, UserRound, Menu, X } from 'lucide-react';
+import { NavLink } from 'react-router';
 
 const Navbar = () => {
     const { theme, toggleTheme } = useTheme();
@@ -20,9 +21,9 @@ const Navbar = () => {
             </div>
 
             <div className='hidden lg:flex items-center gap-8'>
-                <a className='underline-effect font-space tracking-wider text-xl cursor-pointer'>Home</a>
-                <a className='underline-effect font-space tracking-wider text-xl cursor-pointer'>Shop</a>
-                <a className='underline-effect font-space tracking-wider text-xl cursor-pointer'>About</a>
+                <NavLink to="/" className='underline-effect font-space tracking-wider text-xl cursor-pointer'>Home</NavLink>
+                <NavLink to="/products" className='underline-effect font-space tracking-wider text-xl cursor-pointer'>Shop</NavLink>
+                <NavLink to="/about" className='underline-effect font-space tracking-wider text-xl cursor-pointer'>About</NavLink>
             </div>
 
             <div className='flex flex-1 items-center justify-end gap-2'>

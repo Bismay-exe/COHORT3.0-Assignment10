@@ -1,10 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import ProductCards from "./components/ProductCards";
-import Product from "./pages/Product";
-import { Routes } from "react-router";
+import AppRoutes from "./routes/AppRoutes";
 
 const App = () => {
   const [productsData, setProductsData] = useState([]);
@@ -26,12 +24,7 @@ const App = () => {
   return (
     <main className="min-h-screen w-full bg-(--bg-color) flex flex-col items-center">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home productsData={productsData} />} />
-        <Route path="/products" element={<Shop />} />
-        <Route path="/about" element={<About />} />
-        <Route path={`/products/${Product.id}`} element={<Product />} />
-      </Routes>
+      <AppRoutes productsData={productsData} />
       <Footer />
     </main>
   );

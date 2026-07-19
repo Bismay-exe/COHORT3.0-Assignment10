@@ -2,8 +2,8 @@ import React from 'react'
 
 const About = () => {
   return (
-    <div>
-      
+    <div className='flex-1'>
+      hi this is about screen
     </div>
   )
 }

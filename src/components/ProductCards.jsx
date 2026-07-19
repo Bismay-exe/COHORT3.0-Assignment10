@@ -1,6 +1,6 @@
 import { Heart, ShoppingBag, Star } from "lucide-react";
 
-const ProductCard = ({ product }) => {
+const ProductCards = ({ product }) => {
     return (
         <article className="group relative w-full overflow-hidden rounded-3xl border border-(--border-color) bg-(--secondary-bg-color) transition-all duration-500 hover:-translate-y-1">
 
@@ -79,4 +79,4 @@ const ProductCard = ({ product }) => {
     );
 };
 
-export default ProductCard;
+export default ProductCards;
