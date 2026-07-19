@@ -1,0 +1,193 @@
+import {
+    ArrowRight,
+    ShoppingBag,
+    ShoppingCart,
+    X
+} from "lucide-react";
+
+import CartCard from "./CartCard";
+
+const CartSidebar = ({
+    isOpen,
+    setIsOpen,
+    cartItems = []
+}) => {
+
+    const subtotal = cartItems.reduce(
+        (total, item) => total + item.price,
+        0
+    );
+
+    return (
+        <>
+            {/* Backdrop */}
+            <div
+                onClick={() => setIsOpen(false)}
+                className={`
+                    fixed inset-0 z-40
+                    bg-black/40 backdrop-blur-sm
+                    transition-all duration-500
+                    ${
+                        isOpen
+                            ? "opacity-100 visible"
+                            : "opacity-0 invisible"
+                    }
+                `}
+            />
+
+
+            {/* Sidebar */}
+            <aside
+                className={`
+                    fixed top-0 right-0 z-50
+                    h-dvh w-full sm:w-120
+                    flex flex-col
+                    bg-(--bg-color)
+                    border-l border-(--border-color)
+                    text-(--text-color)
+                    transition-transform duration-500 ease-in-out
+                    ${
+                        isOpen
+                            ? "translate-x-0"
+                            : "translate-x-full"
+                    }
+                `}
+            >
+
+                {/* Header */}
+                <div className="flex items-center justify-between px-5 py-5 border-b border-(--border-color)">
+
+                    <div className="flex items-center gap-3">
+
+                        <div className="p-2.5 rounded-xl bg-(--bg-secondary-color) border border-(--border-color)">
+                            <ShoppingCart size={20} />
+                        </div>
+
+                        <div>
+                            <h2 className="font-inter text-xl font-semibold">
+                                Your Cart
+                            </h2>
+
+                            <p className="font-space text-xs text-(--text-muted) mt-0.5">
+                                {cartItems.length} items
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    {/* Close */}
+                    <button
+                        onClick={() => setIsOpen(false)}
+                        className="p-3 rounded-xl text-(--text-muted) hover:text-(--text-color) hover:bg-(--hover-bg-color) transition-all duration-300 cursor-pointer"
+                    >
+                        <X size={21} />
+                    </button>
+
+                </div>
+
+
+                {/* Cart Content */}
+                <div className="flex-1 overflow-y-auto p-5">
+
+                    {cartItems.length > 0 ? (
+
+                        <div className="flex flex-col gap-3">
+                            {cartItems.map((product) => (
+                                <CartCard
+                                    key={product.id}
+                                    product={product}
+                                />
+                            ))}
+                        </div>
+
+                    ) : (
+
+                        /* Empty Cart */
+                        <div className="h-full flex flex-col items-center justify-center text-center px-8">
+
+                            <div className="w-20 h-20 flex items-center justify-center rounded-full bg-(--bg-secondary-color) border border-(--border-color)">
+                                <ShoppingBag
+                                    size={30}
+                                    className="text-(--text-muted)"
+                                />
+                            </div>
+
+                            <h3 className="font-inter text-xl font-semibold mt-5">
+                                Your cart is empty
+                            </h3>
+
+                            <p className="font-space text-sm leading-relaxed text-(--text-muted) max-w-60 mt-2">
+                                Looks like you haven't added anything to your cart yet.
+                            </p>
+
+                            <button
+                                onClick={() => setIsOpen(false)}
+                                className="mt-6 px-6 py-3 rounded-xl bg-(--text-color) text-(--bg-color) font-space cursor-pointer"
+                            >
+                                Continue Shopping
+                            </button>
+
+                        </div>
+
+                    )}
+
+                </div>
+
+
+                {/* Cart Footer */}
+                {cartItems.length > 0 && (
+
+                    <div className="p-5 border-t border-(--border-color) bg-linear-to-t from-(--bg-secondary-color) to-transparent">
+
+                        {/* Subtotal */}
+                        <div className="flex items-center justify-between">
+
+                            <div>
+                                <p className="font-inter font-semibold text-lg">
+                                    Subtotal
+                                </p>
+
+                                <p className="font-space text-xs text-(--text-muted) mt-1">
+                                    Shipping calculated at checkout
+                                </p>
+                            </div>
+
+                            <p className="font-space text-2xl">
+                                ${subtotal.toFixed(2)}
+                            </p>
+
+                        </div>
+
+
+                        {/* Checkout */}
+                        <button className="w-full flex items-center justify-center gap-2 mt-5 py-4 rounded-xl bg-(--text-color) text-(--bg-color) font-space tracking-wide group cursor-pointer">
+
+                            Checkout
+
+                            <ArrowRight
+                                size={18}
+                                className="transition-transform duration-300 group-hover:translate-x-1"
+                            />
+
+                        </button>
+
+
+                        {/* Continue Shopping */}
+                        <button
+                            onClick={() => setIsOpen(false)}
+                            className="w-full mt-3 py-3 font-space text-sm text-(--text-muted) hover:text-(--text-color) transition-colors cursor-pointer"
+                        >
+                            Continue Shopping
+                        </button>
+
+                    </div>
+
+                )}
+
+            </aside>
+        </>
+    );
+};
+
+export default CartSidebar;

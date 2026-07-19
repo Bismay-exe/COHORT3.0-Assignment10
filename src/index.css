@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root,
+[data-theme="light"] {
+    --bg-color: #ffffff;
+    --bg-secondary-color: #f3f0e8;
+    --text-color: #000000;
+    --text-muted: #8f8f8fb0;
+    --secondary-color: rgb(156, 156, 156);
+
+    --accent-color: #E6431F;
+
+    --red: #e11d48;
+    --red-bg: #e11d481c;
+
+    --box-shadow-color: #00000028;
+    --text-shadow-color: #0000003f;
+
+    --blur-bg-color: #ffffff40;
+    --blur-text-color: #00000010;
+
+    --hover-bg-color: #00000010;
+
+    --border-color: #0000002d;
+}
+
+:root[data-theme="dark"] {
+    --bg-color: #000000;
+    --bg-secondary-color: #0c0c0c;
+    --text-color: #f3f3f3;
+    --text-muted: #8f8f8fb0;
+    --secondary-color: #757575;
+
+    --box-shadow-color: #ffffff28;
+    --text-shadow-color: #ffffff3f;
+
+    --blur-bg-color: #0000003b;
+    --blur-text-color: #ffffff10;
+
+    --hover-bg-color: #ffffff0f;
+
+    --border-color: #2c2c2c;
+}
+
+@theme {
+  --font-inter: "Inter", sans-serif;
+  --font-instrument: "Instrument Serif", serif;
+  --font-space: "Space Mono", monospace;
+}
+
+
+.underline-effect {
+    position: relative;
+    text-decoration: none;
+}
+
+.underline-effect::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--text-color);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-in-out;
+}
+
+.underline-effect:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
