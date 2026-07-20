@@ -1,7 +1,15 @@
-import { useState } from 'react';
-import { useTheme } from '../contexts/ThemeContext';
-import { LogOut, Moon, ShoppingCart, Sun, UserRound, Menu, X } from 'lucide-react';
-import { NavLink } from 'react-router';
+import { useState } from "react";
+import { useTheme } from "../contexts/ThemeContext";
+import {
+    LogOut,
+    Moon,
+    ShoppingCart,
+    Sun,
+    UserRound,
+    Menu,
+    X,
+} from "lucide-react";
+import { NavLink } from "react-router";
 
 const Navbar = () => {
     const { theme, toggleTheme } = useTheme();
@@ -11,85 +19,110 @@ const Navbar = () => {
 
     return (
         <nav className="max-w-[1920px] sticky top-0 z-999 w-full h-auto flex items-center justify-between px-4 lg:px-8 py-2 lg:py-4 text-(--text-color)">
-
-            <div className='absolute bg-linear-to-b from-(--bg-secondary-color) via-(--bg-color)/60 via-50% to-transparent w-full h-full top-0 left-0 z-[-1]'></div>
-
-            <div className="lg:flex-1 w-full lg:w-auto flex items-center justify-between">
-                <a className='bg-(--blur-bg-color) backdrop-blur-sm px-4 py-2 rounded-2xl font-instrument italic hover:scale-105 transform-3d hover:rotate-3d hover:rotate-y-360 transition-all duration-1000 ease-in-out cursor-pointer text-4xl lg:text-5xl'>
+            <div className="absolute bg-linear-to-b from-(--bg-secondary-color) via-(--bg-color)/60 via-50% to-transparent w-full h-full top-0 left-0 z-[-1]" />
+            <div className="lg:flex-1 w-full lg:w-auto flex items-center justify-between z-10">
+                <a className="bg-(--blur-bg-color) backdrop-blur-sm px-4 py-2 rounded-2xl font-instrument italic hover:scale-105 transform-3d hover:rotate-3d hover:rotate-y-360 transition-all duration-1000 ease-in-out cursor-pointer text-4xl lg:text-5xl">
                     SkyMart
                 </a>
             </div>
 
-            <div className='hidden lg:flex items-center gap-8'>
-                <NavLink to="/" className='underline-effect font-space tracking-wider text-xl cursor-pointer'>Home</NavLink>
-                <NavLink to="/products" className='underline-effect font-space tracking-wider text-xl cursor-pointer'>Shop</NavLink>
-                <NavLink to="/about" className='underline-effect font-space tracking-wider text-xl cursor-pointer'>About</NavLink>
+            <div className="hidden lg:flex items-center gap-8">
+                <NavLink
+                    to="/"
+                    className="underline-effect font-space tracking-wider text-xl cursor-pointer"
+                >
+                    Home
+                </NavLink>
+                <NavLink
+                    to="/products"
+                    className="underline-effect font-space tracking-wider text-xl cursor-pointer"
+                >
+                    Shop
+                </NavLink>
+                <NavLink
+                    to="/about"
+                    className="underline-effect font-space tracking-wider text-xl cursor-pointer"
+                >
+                    About
+                </NavLink>
             </div>
 
-            <div className='flex flex-1 items-center justify-end gap-2'>
-                <div className='hidden lg:flex items-center gap-4 bg-(--blur-bg-color) backdrop-blur-sm px-4 py-2 rounded-2xl group'>
-                    <div className='w-10 h-10 rounded-full bg-(--bg-color) flex items-center justify-center'>
+            <div className="flex flex-1 items-center justify-end gap-2 z-10">
+                <div className="hidden lg:flex items-center gap-4 bg-(--blur-bg-color) backdrop-blur-sm px-4 py-2 rounded-2xl group hover:bg-(--hover-bg-color) transition-all duration-300 ease-in-out group cursor-pointer">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center">
                         <UserRound className="text-(--text-color)" />
                     </div>
-                    <p className='text-(--text-color) group-hover:text-(--text-color) font-space tracking-wider transition-all duration-300 ease-in-out'>User Name</p>
+                    <p className="text-(--text-color) group-hover:text-(--text-color) font-space tracking-wider transition-all duration-300 ease-in-out">
+                        User Name
+                    </p>
                 </div>
                 <button
                     onClick={toggleTheme}
-                    className="hidden lg:block backdrop-blur-sm theme-toggle p-4 hover:bg-(--hover-bg-color) rounded-full hover:rotate-360 transition-all duration-600 ease-in-out cursor-pointer hover:text-(--text-color)" >
-                    {theme === "dark" ? <Moon /> : <Sun />}
+                    className="block backdrop-blur-sm theme-toggle p-4 hover:bg-(--hover-bg-color) rounded-xl transition-all duration-600 ease-in-out cursor-pointer hover:text-(--text-color) group"
+                >
+                    {theme === "dark" ? <Moon className="group-hover:rotate-360 fill-none group-hover:fill-current/30 transition-all duration-600 ease-in-out" /> : <Sun className="group-hover:rotate-360 fill-none group-hover:fill-current/30 transition-all duration-600 ease-in-out" />}
                 </button>
-                <button
-                    className="backdrop-blur-sm p-4 hover:bg-(--hover-bg-color) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer" >
-                    <ShoppingCart className="group-hover:text-(--text-color)" />
+                <button className="backdrop-blur-sm p-4 hover:bg-(--hover-bg-color) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer">
+                    <ShoppingCart className="group-hover:text-(--text-color) fill-none group-hover:fill-current/30 transition-all duration-600 ease-in-out" />
                 </button>
-                <button
-                    className="hidden lg:block backdrop-blur-sm p-4 hover:bg-(--red-bg) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer" >
-                    <LogOut className="group-hover:text-(--red)" />
+                <button className="hidden lg:block backdrop-blur-sm p-4 hover:bg-(--red-bg) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer">
+                    <LogOut className="group-hover:text-(--red) transition-all duration-600 ease-in-out" />
                 </button>
 
                 <button
                     onClick={toggleMenu}
                     className="lg:hidden backdrop-blur-sm p-4 hover:bg-(--hover-bg-color) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer"
                 >
-                    {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                    {isMobileMenuOpen ? <X /> : <Menu />}
                 </button>
             </div>
 
             {isMobileMenuOpen && (
-                <div className="lg:hidden absolute top-full left-0 w-full bg-(--bg-secondary-color) backdrop-blur-xl flex flex-col items-center py-8 gap-8 shadow-2xl transition-all duration-300">
+                <div className="lg:hidden absolute top-0 right-0 w-auto h-screen">
+                    <div className="h-full bg-(--bg-secondary-color)/90 backdrop-blur-2xl flex flex-col justify-between px-4 pt-24 pb-4 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300">
 
-                    <div className="flex flex-col items-center gap-6">
-                        <a className='font-space tracking-wider text-2xl cursor-pointer'>Home</a>
-                        <a className='font-space tracking-wider text-2xl cursor-pointer'>Shop</a>
-                        <a className='font-space tracking-wider text-2xl cursor-pointer'>About</a>
-                    </div>
+                        <div className="flex flex-col items-start gap-6 w-full py-4 px-4">
+                            <NavLink
+                                to="/"
+                                className="font-instrument italic text-4xl text-(--text-color) cursor-pointer flex justify-center items-center gap-2"
+                            >
+                                <div className="hidden h-0.5 w-10 bg-black"></div>Home
+                            </NavLink>
+                            <NavLink
+                                to="/products"
+                                className="font-instrument italic text-4xl text-(--text-color) cursor-pointer flex justify-center items-center gap-2"
+                            >
+                                <div className="h-0.5 w-10 bg-black"></div>Shop
+                            </NavLink>
+                            <NavLink
+                                to="/about"
+                                className="font-instrument italic text-4xl text-(--text-color) cursor-pointer flex justify-center items-center gap-2"
+                            >
+                                <div className="hidden h-0.5 w-10 bg-black"></div>About
+                            </NavLink>
+                        </div>
 
-                    <div className='flex flex-col items-center gap-4 w-full px-6 mt-4'>
-                        <div className='flex w-full justify-between items-center bg-(--bg-color) px-6 py-4 rounded-2xl'>
-                            <div className='flex items-center gap-4'>
-                                <UserRound className="text-(--text-color)" />
-                                <p className='font-space tracking-wider'>User Name</p>
+                        <div className="flex flex-col gap-3 w-full mt-8">
+                            <div className="flex w-full justify-between items-center rounded-2xl">
+                                <div className="flex-1 flex items-center gap-4 bg-(--blur-bg)  px-4 py-2 rounded-2xl group hover:bg-(--hover-bg-color) transition-all duration-300 ease-in-out group cursor-pointer">
+                                    <div className="w-10 h-10 rounded-full flex items-center justify-center">
+                                        <UserRound className="text-(--text-color)" />
+                                    </div>
+                                    <p className="text-(--text-color) group-hover:text-(--text-color) font-space tracking-wider transition-all duration-300 ease-in-out">
+                                        User Name
+                                    </p>
+                                    <button className="flex justify-center items-center gap-3 bg-(--red-bg)/10 text-(--red) py-4 rounded-2xl hover:bg-(--red-bg)/20 transition-colors duration-300">
+                                        <LogOut size={20} />
+                                    </button>
+                                </div>
                             </div>
-                            <button onClick={toggleTheme} className="p-2 hover:bg-(--hover-bg-color) rounded-full transition-all">
-                                {theme === "dark" ? <Moon /> : <Sun />}
-                            </button>
                         </div>
 
-                        <div className="flex w-full gap-4">
-                            <button className="flex-1 flex justify-center items-center gap-3 bg-(--bg-color) py-4 rounded-2xl hover:bg-(--hover-bg-color) transition-all">
-                                <ShoppingCart size={20} />
-                                <span className="font-space">Cart</span>
-                            </button>
-                            <button className="flex-1 flex justify-center items-center gap-3 bg-(--red-bg) text-(--red) py-4 rounded-2xl transition-all">
-                                <LogOut size={20} />
-                                <span className="font-space">Logout</span>
-                            </button>
-                        </div>
                     </div>
                 </div>
             )}
         </nav>
-    )
-}
+    );
+};
 
 export default Navbar;

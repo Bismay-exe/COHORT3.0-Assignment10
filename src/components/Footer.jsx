@@ -2,7 +2,7 @@ import { Moon } from "lucide-react";
 
 const Footer = () => {
     return (
-        <footer className="w-full bg-linear-to-t from-(--bg-secondary-color) to-transparent text-(--text-color) border-t border-(--border-color) px-4 md:px-8 pt-12 pb-6">
+        <footer className="max-w-[1920px] w-full xbg-linear-to-t from-(--bg-secondary-color) to-transparent text-(--text-color) xborder-t border-(--border-color) px-4 md:px-8 pt-12 pb-6">
 
             {/* Main Footer */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -27,13 +27,13 @@ const Footer = () => {
                     </h3>
 
                     <div className="flex flex-col items-start gap-3 text-(--text-muted)">
-                        <a className="hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
+                        <a className="underline-effect hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
                             All Products
                         </a>
-                        <a className="hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
+                        <a className="underline-effect hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
                             New Arrivals
                         </a>
-                        <a className="hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
+                        <a className="underline-effect hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
                             Popular
                         </a>
                     </div>
@@ -47,13 +47,13 @@ const Footer = () => {
                     </h3>
 
                     <div className="flex flex-col items-start gap-3 text-(--text-muted)">
-                        <a className="hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
+                        <a className="underline-effect hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
                             About Us
                         </a>
-                        <a className="hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
+                        <a className="underline-effect hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
                             Contact
                         </a>
-                        <a className="hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
+                        <a className="underline-effect hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
                             FAQ
                         </a>
                     </div>
@@ -98,11 +98,11 @@ const Footer = () => {
                 </p>
 
                 <div className="flex items-center gap-6 text-sm text-(--text-muted)">
-                    <a className="hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
+                    <a className="underline-effect hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
                         Privacy Policy
                     </a>
 
-                    <a className="hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
+                    <a className="underline-effect hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
                         Terms of Service
                     </a>
                 </div>

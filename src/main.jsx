@@ -1,13 +1,16 @@
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { ThemeProvider } from './contexts/ThemeContext.jsx'
-import { BrowserRouter } from 'react-router'
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
+import { ThemeProvider } from "./contexts/ThemeContext.jsx";
+import { ContextProvider } from "./contexts/MyContext.jsx";
+import { BrowserRouter } from "react-router";
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
     <ThemeProvider>
         <BrowserRouter>
-            <App />
+            <ContextProvider>
+                <App />
+            </ContextProvider>
         </BrowserRouter>
-    </ThemeProvider>
-)
+    </ThemeProvider>,
+);
