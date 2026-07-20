@@ -48,6 +48,8 @@ export const ContextProvider = ({ children }) => {
         });
     };
 
+    const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0) || 0;
+
     return (
         <MyStore.Provider
             value={{
@@ -61,6 +63,7 @@ export const ContextProvider = ({ children }) => {
                 setIsCartOpen,
                 incrementQuantity,
                 decrementQuantity,
+                totalQuantity,
             }}
         >
             {children}

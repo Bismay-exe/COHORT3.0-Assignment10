@@ -4,8 +4,8 @@ import { ArrowRight, ShoppingBag, ShoppingCart, X } from "lucide-react";
 import CartCard from "./CartCard";
 
 const CartSidebar = () => {
-
-    let { isCartOpen, setIsCartOpen, cartItems } = useContext(MyStore);
+    let { isCartOpen, setIsCartOpen, cartItems, totalQuantity } =
+        useContext(MyStore);
 
     const subtotal = cartItems.reduce((total, item) => total + item.price, 0);
 
@@ -28,7 +28,7 @@ const CartSidebar = () => {
                     fixed top-0 right-0 z-50
                     h-dvh w-full sm:w-120
                     flex flex-col
-                    bg-(--bg-color)
+                    bg-(--bg-secondary-color)
                     border-l border-(--border-color)
                     text-(--text-color)
                     transition-transform duration-500 ease-in-out
@@ -36,28 +36,27 @@ const CartSidebar = () => {
                 `}
             >
                 {/* Header */}
-                <div className="flex items-center justify-between px-5 py-5 border-b border-(--border-color)">
-                    <div className="flex items-center gap-3">
-                        <div className="p-2.5 rounded-xl bg-(--bg-secondary-color) border border-(--border-color)">
-                            <ShoppingCart size={20} />
+                <div className="flex items-center justify-between px-5 py-5 xborder-b border-(--border-color)">
+                    <div className="w-full">
+                        <div className="w-full flex justify-between items-center gap-4">
+                            <h2 className="font-instrument italic text-4xl flex items-center gap-3">
+                                <ShoppingCart className="h-12 w-12 p-3 backdrop-blur-sm text-(--text-color) bg-(--hover-bg-color) rounded-xl" />
+                                Your Cart
+                            </h2>
+
+                            {/* Close */}
+                            <button
+                                onClick={() => setIsCartOpen(false)}
+                                className="p-3 rounded-xl text-(--text-muted) hover:text-(--text-color) hover:bg-(--hover-bg-color) transition-all duration-300 cursor-pointer"
+                            >
+                                <X size={26} />
+                            </button>
                         </div>
 
-                        <div>
-                            <h2 className="font-inter text-xl font-semibold">Your Cart</h2>
-
-                            <p className="font-space text-xs text-(--text-muted) mt-0.5">
-                                {cartItems.length} items
-                            </p>
-                        </div>
+                        <p className="font-space text-xs text-(--text-muted) ml-16 mt-0.5">
+                            {cartItems.length} items | {totalQuantity} quantity
+                        </p>
                     </div>
-
-                    {/* Close */}
-                    <button
-                        onClick={() => setIsCartOpen(false)}
-                        className="p-3 rounded-xl text-(--text-muted) hover:text-(--text-color) hover:bg-(--hover-bg-color) transition-all duration-300 cursor-pointer"
-                    >
-                        <X size={21} />
-                    </button>
                 </div>
 
                 {/* Cart Content */}

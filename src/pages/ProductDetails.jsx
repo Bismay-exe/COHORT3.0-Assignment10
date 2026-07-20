@@ -83,7 +83,7 @@ const ProductDetails = () => {
                     <div className="w-full md:w-2/5 lg:w-1/2 md:sticky md:top-28 flex flex-col lg:flex-row-reverse">
 
                         {/* Main Product Image */}
-                        <div className="relative w-full aspect-square flex items-center justify-center rounded-3xl border border-(--border-color) bg-(--bg-secondary-color) p-8 md:p-12 group overflow-hidden">
+                        <div className="relative w-full aspect-square flex items-center justify-center rounded-3xl border border-(--border-color) bg-[#f3f0e8] p-8 md:p-12 group overflow-hidden">
                             <img
                                 src={selectedImage}
                                 alt={singleProductData.title}
@@ -98,7 +98,7 @@ const ProductDetails = () => {
                                     <button
                                         key={index}
                                         onClick={() => setSelectedImage(image)}
-                                        className={`aspect-square rounded-xl border overflow-hidden p-2 cursor-pointer transition-all duration-300 bg-(--bg-secondary-color)
+                                        className={`aspect-square rounded-xl border overflow-hidden p-2 cursor-pointer transition-all duration-300 bg-[#f3f0e8]
                                             ${selectedImage === image
                                                 ? "border-(--text-color)"
                                                 : "border-(--border-color) opacity-60 hover:opacity-100"

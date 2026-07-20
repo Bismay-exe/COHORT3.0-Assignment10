@@ -3,29 +3,25 @@ import { useContext } from "react";
 import { MyStore } from "../contexts/MyContext";
 
 const CartCard = ({ product }) => {
-
-    let { cartItems, setCartItems, incrementQuantity, decrementQuantity } = useContext(MyStore);
+    let { setCartItems, incrementQuantity, decrementQuantity } =
+        useContext(MyStore);
 
     return (
-        <div className="group flex gap-4 p-3 rounded-2xl border border-(--border-color) bg-(--secondary-bg-color)">
-
+        <div className="group flex gap-4 p-3 rounded-2xl border border-(--border-color) bg-(--bg-color)">
             {/* Product Image */}
-            <div className="w-24 h-28 shrink-0 flex items-center justify-center rounded-xl bg-(--bg-secondary-color) p-3 overflow-hidden">
+            <div className="w-24 h-28 shrink-0 flex items-center justify-center rounded-xl bg-[#f3f0e8] p-3 overflow-hidden">
                 <img
-                    src={product.image}
+                    src={product.thumbnail}
                     alt={product.title}
                     className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                 />
             </div>
 
-
             {/* Product Details */}
             <div className="flex-1 min-w-0 flex flex-col justify-between">
-
                 <div>
                     {/* Category + Delete */}
                     <div className="flex items-start justify-between gap-2">
-
                         <p className="font-space text-xs tracking-wider capitalize text-(--text-muted)">
                             {product.category}
                         </p>
@@ -40,29 +36,29 @@ const CartCard = ({ product }) => {
                         >
                             <Trash2 size={17} />
                         </button>
-
                     </div>
 
-
                     {/* Title */}
-                    <h3 className="font-inter font-semibold text-sm leading-snug text-(--text-color) line-clamp-2 mt-1">
+                    <h3 className="max-w-[90%] font-inter font-semibold text-sm leading-snug text-(--text-color) line-clamp-2 mt-1">
                         {product.title}
                     </h3>
+                    <p className="font-space text-sm text-(--text-muted)">
+                        ${product.price} each
+                    </p>
                 </div>
-
 
                 {/* Price + Quantity */}
                 <div className="flex items-end justify-between gap-3 mt-3">
-
-                    <p className="font-space text-lg text-(--text-color)">
+                    <p className="font-space text-xl text-(--text-color)">
                         ${product.price * product.quantity}
                     </p>
 
-
                     {/* Quantity */}
                     <div className="flex items-center border border-(--border-color) rounded-lg overflow-hidden">
-
-                        <button onClick={() => decrementQuantity(product.id)} className="p-1.5 hover:bg-(--hover-bg-color) transition-colors cursor-pointer">
+                        <button
+                            onClick={() => decrementQuantity(product.id)}
+                            className="p-1.5 hover:bg-(--hover-bg-color) transition-colors cursor-pointer"
+                        >
                             <Minus size={14} />
                         </button>
 
@@ -70,16 +66,15 @@ const CartCard = ({ product }) => {
                             {product.quantity}
                         </span>
 
-                        <button onClick={() => incrementQuantity(product.id)} className="p-1.5 hover:bg-(--hover-bg-color) transition-colors cursor-pointer">
+                        <button
+                            onClick={() => incrementQuantity(product.id)}
+                            className="p-1.5 hover:bg-(--hover-bg-color) transition-colors cursor-pointer"
+                        >
                             <Plus size={14} />
                         </button>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     );
 };

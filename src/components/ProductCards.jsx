@@ -21,7 +21,7 @@ const ProductCards = ({ product, isInCart }) => {
             <div
                 onClick={() => navigate(`/products/${product.id}`)}
                 className="relative overflow-hidden bg-(--bg-secondary-color) p-8 cursor-pointer"
-            >
+            >   
                 <img
                     src={product.thumbnail}
                     alt={product.title}
@@ -35,7 +35,7 @@ const ProductCards = ({ product, isInCart }) => {
             </div>
 
             {/* Product Information */}
-            <div className="p-5">
+            <div className="p-5 bg-(--bg-color)">
                 {/* Rating */}
                 <div className="flex items-center justify-between gap-3 mb-3">
                     <div className="flex items-center gap-1.5">

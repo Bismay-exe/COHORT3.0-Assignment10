@@ -15,7 +15,7 @@ import { MyStore } from "../contexts/MyContext";
 const Navbar = () => {
     const { theme, toggleTheme } = useTheme();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    let { setIsCartOpen } = useContext(MyStore);
+    let { setIsCartOpen, totalQuantity } = useContext(MyStore);
 
     const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
@@ -64,8 +64,13 @@ const Navbar = () => {
                 >
                     {theme === "dark" ? <Moon className="group-hover:rotate-360 transition-all duration-600 ease-in-out" /> : <Sun className="group-hover:rotate-360 transition-all duration-600 ease-in-out" />}
                 </button>
-                <button onClick={() => setIsCartOpen(prev => !prev)} className="backdrop-blur-sm p-4 hover:bg-(--hover-bg-color) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer">
+                <button onClick={() => setIsCartOpen(prev => !prev)} className="relative backdrop-blur-sm p-4 hover:bg-(--hover-bg-color) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer">
                     <ShoppingCart className="group-hover:text-(--text-color) transition-all duration-600 ease-in-out" />
+                    {totalQuantity > 0 && (
+                        <span className="absolute top-1.5 right-1.5 w-5 h-5 flex items-center justify-center bg-(--text-color) text-(--bg-color) rounded-full font-instrument text-[15px] font-bold">
+                            {totalQuantity}
+                        </span>
+                    )}
                 </button>
                 <button className="hidden lg:block backdrop-blur-sm p-4 hover:bg-(--red-bg) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer">
                     <LogOut className="group-hover:text-(--red) transition-all duration-600 ease-in-out" />
