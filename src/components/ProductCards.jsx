@@ -4,16 +4,11 @@ import { useNavigate } from "react-router";
 import { MyStore } from "../contexts/MyContext";
 
 const ProductCards = ({ product, isInCart }) => {
-    let { cartItems, setCartItems, setIsCartOpen, incrementQuantity, decrementQuantity } = useContext(MyStore);
+    let { cartItems, addToCart, incrementQuantity, decrementQuantity } = useContext(MyStore);
     const navigate = useNavigate();
 
     const discountedPrice =
         product.price * (1 - product.discountPercentage / 100);
-
-    const addToCart = () => {
-        setCartItems((prev) => [...prev, { ...product, quantity: 1 }]);
-        setIsCartOpen(true);
-    };
 
     return (
         <article className="group relative w-full overflow-hidden rounded-3xl border border-(--border-color) bg-(--secondary-bg-color) transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_var(--box-shadow-color)] hover:border-(--text-color)">

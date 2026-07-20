@@ -10,27 +10,20 @@ import {
     RotateCcw,
     ShieldCheck,
     Package,
+    PackageCheck,
+    PackageMinus,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
+import { MyStore } from "../contexts/MyContext";
 
 const ProductDetails = () => {
+    const { cartItems, addToCart, incrementQuantity, decrementQuantity } = useContext(MyStore);
     const [singleProductData, setSingleProductData] = useState(null);
     const [selectedImage, setSelectedImage] = useState("");
-    const [quantity, setQuantity] = useState(1);
 
     const { id } = useParams();
     const navigate = useNavigate();
-
-    const increaseQuantity = () => {
-        setQuantity((prev) =>
-            Math.min(prev + 1, singleProductData?.stock || 1)
-        );
-    };
-
-    const decreaseQuantity = () => {
-        setQuantity((prev) => Math.max(1, prev - 1));
-    };
 
     const getSingleProductData = async () => {
         try {
@@ -62,6 +55,8 @@ const ProductDetails = () => {
     const discountedPrice =
         singleProductData.price *
         (1 - singleProductData.discountPercentage / 100);
+
+    let isInCart = cartItems.find((val) => val.id === singleProductData.id);
 
     return (
         <main className="flex-1 w-full bg-(--bg-color) text-(--text-color)">
@@ -244,51 +239,69 @@ const ProductDetails = () => {
                                 </div>
 
 
-                                {/* Quantity */}
-                                <div className="flex items-center rounded-xl border border-(--border-color) bg-(--bg-color)">
+                                {/* Conditional Quantity Rendering */}
+                                {isInCart ? (
+                                    <div className="flex items-center rounded-xl border border-(--border-color) bg-(--bg-color)">
+                                        <button
+                                            onClick={() => decrementQuantity(singleProductData.id)}
+                                            className="p-3 cursor-pointer hover:bg-(--hover-bg-color) rounded-l-xl"
+                                        >
+                                            <Minus size={16} />
+                                        </button>
 
-                                    <button
-                                        onClick={decreaseQuantity}
-                                        className="p-3 cursor-pointer hover:bg-(--hover-bg-color) rounded-l-xl"
-                                    >
-                                        <Minus size={16} />
-                                    </button>
+                                        <span className="w-10 text-center font-space">
+                                            {isInCart.quantity}
+                                        </span>
 
-                                    <span className="w-10 text-center font-space">
-                                        {quantity}
-                                    </span>
-
-                                    <button
-                                        onClick={increaseQuantity}
-                                        className="p-3 cursor-pointer hover:bg-(--hover-bg-color) rounded-r-xl"
-                                    >
-                                        <Plus size={16} />
-                                    </button>
-
-                                </div>
+                                        <button
+                                            onClick={() => incrementQuantity(singleProductData.id)}
+                                            className="p-3 cursor-pointer hover:bg-(--hover-bg-color) rounded-r-xl"
+                                        >
+                                            <Plus size={16} />
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div className="flex items-center rounded-xl border border-(--border-color) bg-(--bg-color) opacity-50 pointer-events-none">
+                                        <button className="p-3 rounded-l-xl">
+                                            <Minus size={16} />
+                                        </button>
+                                        <span className="w-10 text-center font-space">1</span>
+                                        <button className="p-3 rounded-r-xl">
+                                            <Plus size={16} />
+                                        </button>
+                                    </div>
+                                )}
 
                             </div>
 
 
                             {/* Add Cart */}
                             <div className="relative flex gap-3 mt-6">
-
-                                <button className="group flex-1 flex items-center justify-between px-5 py-4 rounded-xl bg-(--text-color) text-(--bg-color) cursor-pointer">
-
-                                    <div className="flex items-center gap-3">
-                                        <ShoppingBag size={19} />
-
+                                {isInCart ? (
+                                    <div
+                                        className="group flex-1 flex items-center justify-between px-5 py-4 rounded-xl bg-(--text-color) text-(--bg-color) cursor-pointer"
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <PackageCheck size={19} />
+                                            <span className="font-space hidden sm:block">Product is added to Cart</span>
+                                        </div>
                                         <span className="font-space">
-                                            Add to Cart
+                                            ${(singleProductData.price * isInCart.quantity).toFixed(2)}
                                         </span>
                                     </div>
-
-                                    <span className="font-space">
-                                        ${(singleProductData.price * quantity).toFixed(2)}
-                                    </span>
-
-                                </button>
-
+                                ) : (
+                                    <button
+                                        onClick={() => addToCart(singleProductData)}
+                                        className="group flex-1 flex items-center justify-between px-5 py-4 rounded-xl bg-(--text-color) text-(--bg-color) cursor-pointer">
+                                        <div className="flex items-center gap-3">
+                                            <ShoppingBag size={19} />
+                                            <span className="font-space">Add to Cart</span>
+                                        </div>
+                                        <span className="font-space">
+                                            ${singleProductData.price.toFixed(2)}
+                                        </span>
+                                    </button>
+                                )}
 
                                 <button className="aspect-square p-4 rounded-xl border border-(--border-color) bg-(--bg-color) text-(--text-muted) hover:text-(--red) hover:bg-(--red-bg) transition-all cursor-pointer">
                                     <Heart size={20} />
@@ -670,9 +683,9 @@ const ProductDetails = () => {
 
                             {/* Services */}
                             <div className="gap-10 lg:gap-24 mt-20 pt-8 border-t border-(--border-color)">
-                                    <span className="font-space text-xs uppercase tracking-[0.2em] text-(--text-muted)">
-                                        02 — Shopping with us
-                                    </span>
+                                <span className="font-space text-xs uppercase tracking-[0.2em] text-(--text-muted)">
+                                    02 — Shopping with us
+                                </span>
 
 
                                 <div className="grid sm:grid-cols-3 gap-8 pt-12">

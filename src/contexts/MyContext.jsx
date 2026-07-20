@@ -28,6 +28,11 @@ export const ContextProvider = ({ children }) => {
         window.scrollTo(0, 0);
     }, [pathname]);
 
+    const addToCart = (product) => {
+        setCartItems((prev) => [...prev, { ...product, quantity: 1 }]);
+        setIsCartOpen(true);
+    };
+
     const addToWishlist = (product) => {
         setWishlist([...wishlist, product]);
     };
@@ -58,6 +63,7 @@ export const ContextProvider = ({ children }) => {
                 addToWishlist,
                 cartItems,
                 setCartItems,
+                addToCart,
                 wishlist,
                 isCartOpen,
                 setIsCartOpen,
