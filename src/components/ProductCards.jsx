@@ -1,19 +1,26 @@
-import { Heart, ShoppingBag, Star } from "lucide-react";
+import { Heart, Minus, Plus, ShoppingBag, Star } from "lucide-react";
+import { useContext } from "react";
 import { useNavigate } from "react-router";
+import { MyStore } from "../contexts/MyContext";
 
-const ProductCards = ({ product }) => {
+const ProductCards = ({ product, isInCart }) => {
+    let { cartItems, setCartItems, setIsCartOpen, incrementQuantity, decrementQuantity } = useContext(MyStore);
     const navigate = useNavigate();
 
     const discountedPrice =
         product.price * (1 - product.discountPercentage / 100);
 
-    return (
-        <article className="group relative w-full overflow-hidden rounded-3xl border border-(--border-color) bg-(--secondary-bg-color) transition-all duration-500 hover:-translate-y-1">
+    const addToCart = () => {
+        setCartItems((prev) => [...prev, { ...product, quantity: 1 }]);
+        setIsCartOpen(true);
+    };
 
+    return (
+        <article className="group relative w-full overflow-hidden rounded-3xl border border-(--border-color) bg-(--secondary-bg-color) transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_var(--box-shadow-color)] hover:border-(--text-color)">
             {/* Image Section */}
             <div
                 onClick={() => navigate(`/products/${product.id}`)}
-                className="relative aspect-4/5 overflow-hidden bg-(--bg-secondary-color) p-8 cursor-pointer"
+                className="relative overflow-hidden bg-(--bg-secondary-color) p-8 cursor-pointer"
             >
                 <img
                     src={product.thumbnail}
@@ -25,36 +32,14 @@ const ProductCards = ({ product }) => {
                 <span className="absolute top-4 left-4 px-3 py-1.5 rounded-full border border-(--border-color) bg-(--text-color) text-(--bg-color) font-space text-xs tracking-wider capitalize">
                     {product.category}
                 </span>
-
-                {/* Wishlist */}
-                <button
-                    onClick={(e) => e.stopPropagation()}
-                    className="absolute top-4 right-4 p-3.5 flex items-center justify-center border border-(--border-color) bg-(--blur-text-color) text-(--text-muted) hover:text-(--red) backdrop-blur-sm hover:bg-(--red-bg) rounded-xl transition-all duration-300 cursor-pointer"
-                >
-                    <Heart size={20} />
-                </button>
-
-                {/* Add to Cart - Desktop */}
-                <button
-                    onClick={(e) => e.stopPropagation()}
-                    className="absolute bottom-4 left-4 right-4 hidden lg:flex items-center justify-center gap-2 py-3 rounded-xl bg-(--text-color) text-(--bg-color) font-space tracking-wide translate-y-20 group-hover:translate-y-0 transition-transform duration-500 ease-out cursor-pointer"
-                >
-                    <ShoppingBag size={18} />
-                    Add to Cart
-                </button>
             </div>
 
             {/* Product Information */}
             <div className="p-5">
-
                 {/* Rating */}
                 <div className="flex items-center justify-between gap-3 mb-3">
-
                     <div className="flex items-center gap-1.5">
-                        <Star
-                            size={16}
-                            className="fill-yellow-400 text-yellow-400"
-                        />
+                        <Star size={16} className="fill-yellow-400 text-yellow-400" />
 
                         <span className="font-space text-sm text-(--text-color)">
                             {product.rating}
@@ -77,7 +62,6 @@ const ProductCards = ({ product }) => {
                             </span>
                         )}
                     </div>
-
                 </div>
 
                 {/* Title */}
@@ -93,14 +77,53 @@ const ProductCards = ({ product }) => {
                     {product.description}
                 </p>
 
-                {/* Add to Cart - Mobile */}
-                <button className="w-full flex lg:hidden items-center justify-center gap-2 py-3 rounded-xl bg-(--text-color) text-(--bg-color) font-space tracking-wide mt-6 cursor-pointer">
-                    <ShoppingBag size={18} />
-                    Add to Cart
-                </button>
+                {/* Add to Cart */}
 
+                <div className="relative flex gap-3 mt-6">
+                    {isInCart ? (
+                        <div
+                            className="group flex-1 flex items-center justify-center gap-2 p-1 h-14 rounded-xl border border-(--border-color) bg-(--text-color) text-(--bg-cololg"
+                        >
+                            <button
+                                onClick={() => decrementQuantity(product.id)}
+                                className="group flex-1 flex items-center justify-center px-5 h-full rounded-lg hover:bg-(--bg-color)/15 text-(--bg-color) cursor-pointer"
+                            >
+                                <Minus size={24} />
+                            </button>
+
+                            <span className="group flex-1 flex items-center justify-center px-5 h-full text-(--bg-color)">
+                                {cartItems.find((item) => item.id === product.id)?.quantity}
+                            </span>
+
+                            <button
+                                onClick={() => incrementQuantity(product.id)}
+                                className="group flex-1 flex items-center justify-center px-5 h-full rounded-lg hover:bg-(--bg-color)/15 text-(--bg-color) cursor-pointer"
+                            >
+                                <Plus size={24} />
+                            </button>
+
+                        </div>
+                    ) : (
+                        <button
+                            onClick={addToCart}
+                            className="group flex-1 flex items-center justify-center px-5 py-4 rounded-xl bg-(--text-color) text-(--bg-color) cursor-pointer"
+                        >
+                            <div className="flex items-center gap-3">
+                                <ShoppingBag size={19} />
+
+                                <span className="font-space">Add to Cart</span>
+                            </div>
+                        </button>
+                    )}
+
+                    <button className="aspect-square p-4 rounded-xl border border-(--border-color) bg-(--bg-color) text-(--text-muted) hover:text-(--red) hover:bg-(--red-bg) hover:border-(--red) transition-all group cursor-pointer">
+                        <Heart
+                            size={20}
+                            className="fill-currents group-hover:shadow-[0_25px_50px_-12px_var(--red)]"
+                        />
+                    </button>
+                </div>
             </div>
-
         </article>
     );
 };

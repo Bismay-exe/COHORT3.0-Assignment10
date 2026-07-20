@@ -84,22 +84,11 @@ const ProductDetails = () => {
 
                         {/* Main Product Image */}
                         <div className="relative w-full aspect-square flex items-center justify-center rounded-3xl border border-(--border-color) bg-(--bg-secondary-color) p-8 md:p-12 group overflow-hidden">
-
                             <img
                                 src={selectedImage}
                                 alt={singleProductData.title}
                                 className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-105"
                             />
-
-                            {/* Category */}
-                            <span className="absolute top-5 left-5 px-4 py-2 rounded-full bg-(--text-color) text-(--bg-color) font-space text-xs tracking-wider capitalize">
-                                {singleProductData.category}
-                            </span>
-
-                            {/* Wishlist */}
-                            <button className="absolute top-5 right-5 p-3.5 flex items-center justify-center border border-(--border-color) bg-(--blur-text-color) text-(--text-muted) hover:text-(--red) backdrop-blur-sm hover:bg-(--red-bg) rounded-xl transition-all duration-300 cursor-pointer">
-                                <Heart size={22} />
-                            </button>
                         </div>
 
                         {/* Image Gallery */}
@@ -149,7 +138,7 @@ const ProductDetails = () => {
 
 
                         {/* Main Heading */}
-                        <h1 className="font-inter text-5xl lg:text-7xl font-semibold leading-[0.95] tracking-[-0.05em] mt-5 max-w-3xl">
+                        <h1 className="font-inter text-5xl lg:text-7xl font-semibold leading-[0.95] tracking-tighter mt-5 max-w-3xl">
                             {singleProductData.title}
                         </h1>
 

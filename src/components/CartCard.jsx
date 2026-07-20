@@ -1,6 +1,11 @@
 import { Minus, Plus, Trash2 } from "lucide-react";
+import { useContext } from "react";
+import { MyStore } from "../contexts/MyContext";
 
 const CartCard = ({ product }) => {
+
+    let { cartItems, setCartItems, incrementQuantity, decrementQuantity } = useContext(MyStore);
+
     return (
         <div className="group flex gap-4 p-3 rounded-2xl border border-(--border-color) bg-(--secondary-bg-color)">
 
@@ -26,6 +31,11 @@ const CartCard = ({ product }) => {
                         </p>
 
                         <button
+                            onClick={() =>
+                                setCartItems((prev) =>
+                                    prev.filter((item) => item.id !== product.id),
+                                )
+                            }
                             className="shrink-0 text-(--text-muted) hover:text-(--red) transition-colors duration-300 cursor-pointer"
                         >
                             <Trash2 size={17} />
@@ -45,22 +55,22 @@ const CartCard = ({ product }) => {
                 <div className="flex items-end justify-between gap-3 mt-3">
 
                     <p className="font-space text-lg text-(--text-color)">
-                        ${product.price}
+                        ${product.price * product.quantity}
                     </p>
 
 
                     {/* Quantity */}
                     <div className="flex items-center border border-(--border-color) rounded-lg overflow-hidden">
 
-                        <button className="p-1.5 hover:bg-(--hover-bg-color) transition-colors cursor-pointer">
+                        <button onClick={() => decrementQuantity(product.id)} className="p-1.5 hover:bg-(--hover-bg-color) transition-colors cursor-pointer">
                             <Minus size={14} />
                         </button>
 
                         <span className="w-7 text-center font-space text-xs text-(--text-color)">
-                            1
+                            {product.quantity}
                         </span>
 
-                        <button className="p-1.5 hover:bg-(--hover-bg-color) transition-colors cursor-pointer">
+                        <button onClick={() => incrementQuantity(product.id)} className="p-1.5 hover:bg-(--hover-bg-color) transition-colors cursor-pointer">
                             <Plus size={14} />
                         </button>
 

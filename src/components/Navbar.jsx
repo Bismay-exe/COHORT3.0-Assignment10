@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useTheme } from "../contexts/ThemeContext";
 import {
     LogOut,
@@ -10,15 +10,17 @@ import {
     X,
 } from "lucide-react";
 import { NavLink } from "react-router";
+import { MyStore } from "../contexts/MyContext";
 
 const Navbar = () => {
     const { theme, toggleTheme } = useTheme();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    let { setIsCartOpen } = useContext(MyStore);
 
     const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
     return (
-        <nav className="max-w-[1920px] sticky top-0 z-999 w-full h-auto flex items-center justify-between px-4 lg:px-8 py-2 lg:py-4 text-(--text-color)">
+        <nav className="max-w-[1920px] sticky top-0 z-20 w-full h-auto flex items-center justify-between px-4 lg:px-8 py-2 lg:py-4 text-(--text-color)">
             <div className="absolute bg-linear-to-b from-(--bg-secondary-color) via-(--bg-color)/60 via-50% to-transparent w-full h-full top-0 left-0 z-[-1]" />
             <div className="lg:flex-1 w-full lg:w-auto flex items-center justify-between z-10">
                 <a className="bg-(--blur-bg-color) backdrop-blur-sm px-4 py-2 rounded-2xl font-instrument italic hover:scale-105 transform-3d hover:rotate-3d hover:rotate-y-360 transition-all duration-1000 ease-in-out cursor-pointer text-4xl lg:text-5xl">
@@ -47,7 +49,7 @@ const Navbar = () => {
                 </NavLink>
             </div>
 
-            <div className="flex flex-1 items-center justify-end gap-2 z-10">
+            <div className="flex flex-1 items-center justify-end gap-2">
                 <div className="hidden lg:flex items-center gap-4 bg-(--blur-bg-color) backdrop-blur-sm px-4 py-2 rounded-2xl group hover:bg-(--hover-bg-color) transition-all duration-300 ease-in-out group cursor-pointer">
                     <div className="w-10 h-10 rounded-full flex items-center justify-center">
                         <UserRound className="text-(--text-color)" />
@@ -60,10 +62,10 @@ const Navbar = () => {
                     onClick={toggleTheme}
                     className="block backdrop-blur-sm theme-toggle p-4 hover:bg-(--hover-bg-color) rounded-xl transition-all duration-600 ease-in-out cursor-pointer hover:text-(--text-color) group"
                 >
-                    {theme === "dark" ? <Moon className="group-hover:rotate-360 fill-none group-hover:fill-current/30 transition-all duration-600 ease-in-out" /> : <Sun className="group-hover:rotate-360 fill-none group-hover:fill-current/30 transition-all duration-600 ease-in-out" />}
+                    {theme === "dark" ? <Moon className="group-hover:rotate-360 transition-all duration-600 ease-in-out" /> : <Sun className="group-hover:rotate-360 transition-all duration-600 ease-in-out" />}
                 </button>
-                <button className="backdrop-blur-sm p-4 hover:bg-(--hover-bg-color) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer">
-                    <ShoppingCart className="group-hover:text-(--text-color) fill-none group-hover:fill-current/30 transition-all duration-600 ease-in-out" />
+                <button onClick={() => setIsCartOpen(prev => !prev)} className="backdrop-blur-sm p-4 hover:bg-(--hover-bg-color) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer">
+                    <ShoppingCart className="group-hover:text-(--text-color) transition-all duration-600 ease-in-out" />
                 </button>
                 <button className="hidden lg:block backdrop-blur-sm p-4 hover:bg-(--red-bg) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer">
                     <LogOut className="group-hover:text-(--red) transition-all duration-600 ease-in-out" />
@@ -71,7 +73,7 @@ const Navbar = () => {
 
                 <button
                     onClick={toggleMenu}
-                    className="lg:hidden backdrop-blur-sm p-4 hover:bg-(--hover-bg-color) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer"
+                    className="lg:hidden backdrop-blur-sm p-4 hover:bg-(--hover-bg-color) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer z-10"
                 >
                     {isMobileMenuOpen ? <X /> : <Menu />}
                 </button>
@@ -86,19 +88,19 @@ const Navbar = () => {
                                 to="/"
                                 className="font-instrument italic text-4xl text-(--text-color) cursor-pointer flex justify-center items-center gap-2"
                             >
-                                <div className="hidden h-0.5 w-10 bg-black"></div>Home
+                                <div className="hidden h-0.5 w-10 bg-(--text-color)"></div>Home
                             </NavLink>
                             <NavLink
                                 to="/products"
                                 className="font-instrument italic text-4xl text-(--text-color) cursor-pointer flex justify-center items-center gap-2"
                             >
-                                <div className="h-0.5 w-10 bg-black"></div>Shop
+                                <div className="h-0.5 w-10 bg-(--text-color)"></div>Shop
                             </NavLink>
                             <NavLink
                                 to="/about"
                                 className="font-instrument italic text-4xl text-(--text-color) cursor-pointer flex justify-center items-center gap-2"
                             >
-                                <div className="hidden h-0.5 w-10 bg-black"></div>About
+                                <div className="hidden h-0.5 w-10 bg-(--text-color)"></div>About
                             </NavLink>
                         </div>
 
