@@ -20,7 +20,7 @@ const WishListCards = ({ product }) => {
     const isInWishlist = wishlist.some((item) => item.id === product.id);
 
     return (
-        <article className="group flex gap-4 rounded-3xl border border-(--border-color) bg-(--secondary-bg-color) p-2 md:p-3 transition-all duration-300 hover:border-(--text-muted)">
+        <article className="group flex gap-4 rounded-3xl border border-(--border-color) bg-(--secondary-bg) p-2 md:p-3 transition-all duration-300 hover:border-(--text-muted)">
             {/* IMAGE */}
 
             <div
@@ -53,7 +53,7 @@ const WishListCards = ({ product }) => {
                                 {product.title}
                             </h2>
 
-                            <p className="font-space text-[11px] uppercase tracking-[0.15em] text-(--text-muted) line-clamp-1 md:line-clamp-2">
+                            <p className="hidden :block font-space text-[11px] uppercase tracking-[0.15em] text-(--text-muted) line-clamp-2 md:line-clamp-2">
                                 {product.description}
                             </p>
                         </div>

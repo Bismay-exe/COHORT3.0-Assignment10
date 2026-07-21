@@ -13,7 +13,7 @@ const ProductCards = ({ product }) => {
         product.price * (1 - product.discountPercentage / 100);
 
     return (
-        <article className="group relative w-full overflow-hidden rounded-3xl border border-(--border-color) bg-(--secondary-bg-color) transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_var(--box-shadow-color)] hover:border-(--text-color)">
+        <article className="group relative w-full overflow-hidden rounded-3xl border border-(--border-color) transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_var(--box-shadow-color)] hover:border-(--text-color)">
             {/* Image Section */}
             <div
                 onClick={() => navigate(`/products/${product.id}`)}
