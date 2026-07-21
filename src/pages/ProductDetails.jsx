@@ -18,9 +18,20 @@ import { useNavigate, useParams } from "react-router";
 import { MyStore } from "../contexts/MyContext";
 
 const ProductDetails = () => {
-    const { cartItems, addToCart, incrementQuantity, decrementQuantity } = useContext(MyStore);
+    let { 
+        cartItems, 
+        addToCart, 
+        incrementQuantity, 
+        decrementQuantity,
+        wishlist,
+        toggleWishlist
+    } = useContext(MyStore);
+
     const [singleProductData, setSingleProductData] = useState(null);
     const [selectedImage, setSelectedImage] = useState("");
+
+    let isInCart = cartItems.find((val) => val.id === singleProductData.id);
+    let isInWishlist = wishlist.some((item) => item.id === singleProductData?.id);
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -55,8 +66,6 @@ const ProductDetails = () => {
     const discountedPrice =
         singleProductData.price *
         (1 - singleProductData.discountPercentage / 100);
-
-    let isInCart = cartItems.find((val) => val.id === singleProductData.id);
 
     return (
         <main className="flex-1 w-full bg-(--bg-color) text-(--text-color)">
@@ -303,8 +312,14 @@ const ProductDetails = () => {
                                     </button>
                                 )}
 
-                                <button className="aspect-square p-4 rounded-xl border border-(--border-color) bg-(--bg-color) text-(--text-muted) hover:text-(--red) hover:bg-(--red-bg) transition-all cursor-pointer">
-                                    <Heart size={20} />
+                                <button 
+                                    onClick={() => toggleWishlist(singleProductData)}
+                                    className={`aspect-square p-4 rounded-xl border flex items-center justify-center transition-all cursor-pointer ${
+                                        isInWishlist 
+                                            ? "bg-(--red-bg) border-(--red-bg) text-(--red)" 
+                                            : "border-(--border-color) bg-(--bg-color) text-(--text-muted) hover:text-(--red) hover:bg-(--red-bg)"
+                                    }`}>
+                                    <Heart size={20} className={isInWishlist ? "fill-current" : ""} />
                                 </button>
 
                             </div>

@@ -3,9 +3,11 @@ import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { MyStore } from "../contexts/MyContext";
 
-const ProductCards = ({ product, isInCart }) => {
-    let { cartItems, addToCart, incrementQuantity, decrementQuantity } = useContext(MyStore);
+const ProductCards = ({ product }) => {
+    let { cartItems, addToCart, incrementQuantity, decrementQuantity, wishlist, toggleWishlist } = useContext(MyStore);
     const navigate = useNavigate();
+    const isInCart = cartItems.some((item) => item.id === product.id);
+    const isInWishlist = wishlist.some((item) => item.id === product.id);
 
     const discountedPrice =
         product.price * (1 - product.discountPercentage / 100);
@@ -100,7 +102,7 @@ const ProductCards = ({ product, isInCart }) => {
                         </div>
                     ) : (
                         <button
-                            onClick={addToCart}
+                            onClick={() => addToCart(product)}
                             className="group flex-1 flex items-center justify-center px-5 py-4 rounded-xl bg-(--text-color) text-(--bg-color) cursor-pointer"
                         >
                             <div className="flex items-center gap-3">
@@ -111,10 +113,19 @@ const ProductCards = ({ product, isInCart }) => {
                         </button>
                     )}
 
-                    <button className="aspect-square p-4 rounded-xl border border-(--border-color) bg-(--bg-color) text-(--text-muted) hover:text-(--red) hover:bg-(--red-bg) hover:border-(--red) transition-all group cursor-pointer">
+                    <button 
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            toggleWishlist(product);
+                        }}
+                        className={`aspect-square p-4 rounded-xl border flex items-center justify-center transition-all group cursor-pointer ${
+                            isInWishlist
+                                ? "bg-(--pink-bg) border-(--pink-bg) text-(--pink)"
+                                : "border-(--border-color) bg-(--bg-color) text-(--text-muted) hover:text-(--pink) hover:bg-(--pink-bg) hover:border-(--pink)"
+                        }`}>
                         <Heart
                             size={20}
-                            className="fill-currents group-hover:shadow-[0_25px_50px_-12px_var(--red)]"
+                            className={`${isInWishlist ? "fill-current" : ""} group-hover:shadow-[0_25px_50px_-12px_var(--pink)]`}
                         />
                     </button>
                 </div>

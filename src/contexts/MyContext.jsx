@@ -33,8 +33,14 @@ export const ContextProvider = ({ children }) => {
         setIsCartOpen(true);
     };
 
-    const addToWishlist = (product) => {
-        setWishlist([...wishlist, product]);
+    const toggleWishlist = (product) => {
+        setWishlist((prev) => {
+            const exists = prev.find((item) => item.id === product.id);
+            if (exists) {
+                return prev.filter((item) => item.id !== product.id);
+            }
+            return [...prev, { ...product }];
+        });
     };
 
     const incrementQuantity = (id) => {
@@ -60,7 +66,7 @@ export const ContextProvider = ({ children }) => {
             value={{
                 productsData,
                 setProductsData,
-                addToWishlist,
+                toggleWishlist,
                 cartItems,
                 setCartItems,
                 addToCart,

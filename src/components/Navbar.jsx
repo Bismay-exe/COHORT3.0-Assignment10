@@ -63,12 +63,22 @@ const Navbar = () => {
                     onClick={toggleTheme}
                     className="block backdrop-blur-sm theme-toggle p-4 hover:bg-(--hover-bg-color) rounded-xl transition-all duration-600 ease-in-out cursor-pointer hover:text-(--text-color) group"
                 >
-                    {theme === "dark" ? <Moon className="group-hover:rotate-360 transition-all duration-600 ease-in-out" /> : <Sun className="group-hover:rotate-360 transition-all duration-600 ease-in-out" />}
+                    {theme === "dark" ? (
+                        <Moon className="group-hover:rotate-360 transition-all duration-600 ease-in-out" />
+                    ) : (
+                        <Sun className="group-hover:rotate-360 transition-all duration-600 ease-in-out" />
+                    )}
                 </button>
-                <button className="hidden lg:block backdrop-blur-sm p-4 hover:bg-pink-500/15 rounded-xl transition-all duration-300 ease-in-out group cursor-pointer">
-                    <Heart className="group-hover:text-pink-500 transition-all duration-600 ease-in-out" />
-                </button>
-                <button onClick={() => setIsCartOpen(prev => !prev)} className="relative backdrop-blur-sm p-4 hover:bg-(--hover-bg-color) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer">
+                <NavLink
+                    to="/wishlist"
+                    className="hidden lg:block backdrop-blur-sm p-4 hover:bg-(--pink-bg) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer"
+                >
+                    <Heart className="group-hover:text-(--pink) transition-all duration-600 ease-in-out" />
+                </NavLink>
+                <button
+                    onClick={() => setIsCartOpen((prev) => !prev)}
+                    className="relative backdrop-blur-sm p-4 hover:bg-(--hover-bg-color) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer"
+                >
                     <ShoppingCart className="group-hover:text-(--text-color) transition-all duration-600 ease-in-out" />
                     {totalQuantity > 0 && (
                         <span className="absolute top-1.5 right-1.5 w-5 h-5 flex items-center justify-center bg-(--text-color) text-(--bg-color) rounded-full font-instrument text-[15px] font-bold">
@@ -91,7 +101,6 @@ const Navbar = () => {
             {isMobileMenuOpen && (
                 <div className="lg:hidden absolute top-0 right-0 w-auto h-screen">
                     <div className="h-full bg-(--bg-secondary-color)/90 backdrop-blur-2xl flex flex-col justify-between px-4 pt-24 pb-4 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300">
-
                         <div className="flex flex-col items-start gap-6 w-full py-4 px-4">
                             <NavLink
                                 to="/"
@@ -116,7 +125,8 @@ const Navbar = () => {
                                 to="/wishlist"
                                 className="font-instrument italic text-4xl text-(--text-color) cursor-pointer flex justify-center items-center gap-2"
                             >
-                                <div className="hidden h-0.5 w-10 bg-(--text-color)"></div>Wishlist
+                                <div className="hidden h-0.5 w-10 bg-(--text-color)"></div>
+                                Wishlist
                             </NavLink>
                         </div>
 
@@ -135,7 +145,6 @@ const Navbar = () => {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             )}

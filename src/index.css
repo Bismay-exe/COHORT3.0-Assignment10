@@ -11,7 +11,10 @@
     --accent-color: #E6431F;
 
     --red: #e11d48;
-    --red-bg: #e11d481c;
+    --red-bg: #e11d4725;
+
+    --pink: #f755b9;
+    --pink-bg: #f755b933;
 
     --box-shadow-color: rgb(0 0 0 / 0.25);
     --text-shadow-color: #0000003f;
@@ -30,6 +33,12 @@
     --text-color: #f3f3f3;
     --text-muted: #8f8f8fb0;
     --secondary-color: #757575;
+
+    --red: #e11d48;
+    --red-bg: #e11d473d;
+
+    --pink: #f755b9;
+    --pink-bg: #f755b942;
 
     --box-shadow-color: rgb(255 255 255 / 0.25);
     --text-shadow-color: #ffffff3f;
