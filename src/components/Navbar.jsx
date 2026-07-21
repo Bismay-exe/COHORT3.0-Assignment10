@@ -8,6 +8,7 @@ import {
     UserRound,
     Menu,
     X,
+    Heart,
 } from "lucide-react";
 import { NavLink } from "react-router";
 import { MyStore } from "../contexts/MyContext";
@@ -64,6 +65,9 @@ const Navbar = () => {
                 >
                     {theme === "dark" ? <Moon className="group-hover:rotate-360 transition-all duration-600 ease-in-out" /> : <Sun className="group-hover:rotate-360 transition-all duration-600 ease-in-out" />}
                 </button>
+                <button className="hidden lg:block backdrop-blur-sm p-4 hover:bg-pink-500/15 rounded-xl transition-all duration-300 ease-in-out group cursor-pointer">
+                    <Heart className="group-hover:text-pink-500 transition-all duration-600 ease-in-out" />
+                </button>
                 <button onClick={() => setIsCartOpen(prev => !prev)} className="relative backdrop-blur-sm p-4 hover:bg-(--hover-bg-color) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer">
                     <ShoppingCart className="group-hover:text-(--text-color) transition-all duration-600 ease-in-out" />
                     {totalQuantity > 0 && (
@@ -106,6 +110,13 @@ const Navbar = () => {
                                 className="font-instrument italic text-4xl text-(--text-color) cursor-pointer flex justify-center items-center gap-2"
                             >
                                 <div className="hidden h-0.5 w-10 bg-(--text-color)"></div>About
+                            </NavLink>
+                            <div className="h-0.5 w-full bg-(--text-color)/50"></div>
+                            <NavLink
+                                to="/wishlist"
+                                className="font-instrument italic text-4xl text-(--text-color) cursor-pointer flex justify-center items-center gap-2"
+                            >
+                                <div className="hidden h-0.5 w-10 bg-(--text-color)"></div>Wishlist
                             </NavLink>
                         </div>
 

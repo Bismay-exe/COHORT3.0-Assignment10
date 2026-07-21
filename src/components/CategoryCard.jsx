@@ -7,16 +7,16 @@ const CategoryCard = ({ category, index, categoryImage, onClick }) => {
             className="aspect-video lg:aspect-square group relative overflow-hidden rounded-2xl md:rounded-3xl border border-(--border-color) bg-(--bg-secondary-color) cursor-pointer"
         >
             {/* Category Info */}
-            <div className="relative z-10 p-4 sm:p-5 md:p-6 flex justify-between items-start">
-                <p className="w-1/2 font-inter text-sm sm:text-md md:text-2xl font-medium">
-                    {category.name} 
+            <div className="relative z-10 p-4 sm:p-5 md:p-6 flex justify-between items-start @container">
+                <p className="w-1/2 font-inter text-[8cqw] md:text-[12cqw] font-medium">
+                    {category.name}
                 </p>
 
                 <div className="hidden md:flex items-center gap-1 font-space text-xs text-(--text-muted) group-hover:text-(--text-color) transition-colors duration-300">
                     {/* Explore category */}
                     <ArrowRight
                         size={24}
-                        className="transition-transform duration-300 group-hover:-rotate-45"
+                        className="transition-transform duration-300 group-hover:rotate-0 -rotate-45"
                     />
                 </div>
             </div>
