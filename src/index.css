@@ -54,9 +54,9 @@
 }
 
 @theme {
-  --font-inter: "Inter", sans-serif;
-  --font-instrument: "Instrument Serif", serif;
-  --font-space: "Space Mono", monospace;
+    --font-inter: "Inter", sans-serif;
+    --font-instrument: "Instrument Serif", serif;
+    --font-space: "Space Mono", monospace;
 }
 
 
@@ -83,22 +83,28 @@
     transform-origin: left;
 }
 
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
-    display: none;
-}
-
 html,
-body {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+.custom-sidebar-container {
+    scrollbar-color: var(--text-color) transparent;
+    scrollbar-width: thin;
 }
 
-.no-scrollbar::-webkit-scrollbar {
-    display: none;
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
 
-.no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-color);
+    border-radius: 10px;
+    border: 2px solid var(--text-muted);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-color);
 }

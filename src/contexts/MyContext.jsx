@@ -9,12 +9,15 @@ export const ContextProvider = ({ children }) => {
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [cartItems, setCartItems] = useState([]);
     const [wishlist, setWishlist] = useState([]);
+    const [isLoading, setIsLoading] = useState(true)
+
     const { pathname } = useLocation();
 
     const getProductsData = async () => {
         try {
-            const res = await axios.get("https://dummyjson.com/products?limit=10");
+            const res = await axios.get("https://dummyjson.com/products?limit=0");
             setProductsData(res.data.products);
+            setIsLoading(false);
         } catch (error) {
             console.log(error);
         }
@@ -66,6 +69,8 @@ export const ContextProvider = ({ children }) => {
             value={{
                 productsData,
                 setProductsData,
+                isLoading,
+                setIsLoading,
                 toggleWishlist,
                 cartItems,
                 setCartItems,

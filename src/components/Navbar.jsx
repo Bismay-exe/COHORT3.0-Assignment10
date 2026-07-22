@@ -12,11 +12,15 @@ import {
     X,
     Heart,
 } from "lucide-react";
+import toast from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+
+const notify = () => toast.error("Here is your toast.");
 
 const Navbar = () => {
     const { theme, toggleTheme } = useTheme();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    let { setIsCartOpen, totalQuantity } = useContext(MyStore);
+    let { isCartOpen, setIsCartOpen, totalQuantity } = useContext(MyStore);
 
     const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
@@ -32,19 +36,25 @@ const Navbar = () => {
             <div className="hidden lg:flex items-center gap-8">
                 <NavLink
                     to="/"
-                    className="underline-effect font-space tracking-wider text-xl cursor-pointer"
+                    className={({ isActive }) =>
+                        `underline-effect font-space tracking-wider text-xl cursor-pointer ${isActive ? "text-(--text-color)" : "text-(--text-muted)"}`
+                    }
                 >
                     Home
                 </NavLink>
                 <NavLink
                     to="/products"
-                    className="underline-effect font-space tracking-wider text-xl cursor-pointer"
+                    className={({ isActive }) =>
+                        `underline-effect font-space tracking-wider text-xl cursor-pointer ${isActive ? "text-(--text-color)" : "text-(--text-muted)"}`
+                    }
                 >
                     Shop
                 </NavLink>
                 <NavLink
                     to="/about"
-                    className="underline-effect font-space tracking-wider text-xl cursor-pointer"
+                    className={({ isActive }) =>
+                        `underline-effect font-space tracking-wider text-xl cursor-pointer ${isActive ? "text-(--text-color)" : "text-(--text-muted)"}`
+                    }
                 >
                     About
                 </NavLink>
@@ -71,7 +81,9 @@ const Navbar = () => {
                 </button>
                 <NavLink
                     to="/wishlist"
-                    className="hidden lg:block backdrop-blur-sm p-4 hover:bg-(--pink-bg) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer"
+                    className={({ isActive }) =>
+                        `hidden lg:block backdrop-blur-sm p-4 hover:bg-(--pink-bg) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer ${isActive ? "bg-(--pink-bg) text-(--pink)" : ""}`
+                    }
                 >
                     <Heart className="group-hover:text-(--pink) transition-all duration-600 ease-in-out" />
                 </NavLink>
@@ -86,9 +98,43 @@ const Navbar = () => {
                         </span>
                     )}
                 </button>
-                <button className="hidden lg:block backdrop-blur-sm p-4 hover:bg-(--red-bg) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer">
+                <button
+                    onClick={() =>
+                        toast.custom((t) => (
+                            <div
+                                className={`
+                                    ${t.visible ? "animate-custom-enter" : "animate-custom-leave"}
+                                    flex items-center gap-4
+                                    w-[360px]
+                                    rounded-2xl
+                                    border border-(--border-color)
+                                    bg-(--bg-secondary-color)
+                                    p-5
+                                    shadow-xl
+        `}
+                            >
+                                <div className="w-12 h-12 rounded-xl bg-(--red-bg) flex items-center justify-center">
+                                    <LogOut className="text-(--red)" size={20} />
+                                </div>
+
+                                <div className="flex-1">
+                                    <p className="font-inter font-semibold text-(--text-color)">
+                                        Logged Out
+                                    </p>
+
+                                    <p className="font-space text-sm text-(--text-muted) mt-1">
+                                        You have successfully signed out.
+                                    </p>
+                                </div>
+                            </div>
+                        ))
+                    }
+                    className="hidden lg:block backdrop-blur-sm p-4 hover:bg-(--red-bg) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer"
+                >
                     <LogOut className="group-hover:text-(--red) transition-all duration-600 ease-in-out" />
                 </button>
+
+                <Toaster position="top-right" reverseOrder={false} />
 
                 <button
                     onClick={toggleMenu}
@@ -104,34 +150,81 @@ const Navbar = () => {
                         <div className="flex flex-col items-start gap-6 w-full py-4 px-4">
                             <NavLink
                                 to="/"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="font-instrument italic text-4xl text-(--text-color) cursor-pointer flex justify-center items-center gap-2"
+                                // onClick={() => setIsMobileMenuOpen(false)}
+                                className={({ isActive }) =>
+                                    `font-instrument italic text-4xl cursor-pointer flex justify-center items-center gap-2 transition-colors duration-300 ${isActive ? "text-(--text-color)" : "text-(--text-muted)"}`
+                                }
                             >
-                                <div className="hidden h-0.5 w-10 bg-(--text-color)"></div>Home
+                                {({ isActive }) => (
+                                    <>
+                                        <div
+                                            className={`h-0.5 bg-(--text-color) transition-all duration-300 ${isActive ? "w-10" : "w-0"}`}
+                                        ></div>
+                                        Home
+                                    </>
+                                )}
                             </NavLink>
                             <NavLink
                                 to="/products"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="font-instrument italic text-4xl text-(--text-color) cursor-pointer flex justify-center items-center gap-2"
+                                // onClick={() => setIsMobileMenuOpen(false)}
+                                className={({ isActive }) =>
+                                    `font-instrument italic text-4xl cursor-pointer flex justify-center items-center gap-2 transition-colors duration-300 ${isActive ? "text-(--text-color)" : "text-(--text-muted)"}`
+                                }
                             >
-                                <div className="h-0.5 w-10 bg-(--text-color)"></div>Shop
+                                {({ isActive }) => (
+                                    <>
+                                        <div
+                                            className={`h-0.5 bg-(--text-color) transition-all duration-300 ${isActive ? "w-10" : "w-0"}`}
+                                        ></div>
+                                        Shop
+                                    </>
+                                )}
                             </NavLink>
                             <NavLink
                                 to="/about"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="font-instrument italic text-4xl text-(--text-color) cursor-pointer flex justify-center items-center gap-2"
+                                // onClick={() => setIsMobileMenuOpen(false)}
+                                className={({ isActive }) =>
+                                    `font-instrument italic text-4xl cursor-pointer flex justify-center items-center gap-2 transition-colors duration-300 ${isActive ? "text-(--text-color)" : "text-(--text-muted)"}`
+                                }
                             >
-                                <div className="hidden h-0.5 w-10 bg-(--text-color)"></div>About
+                                {({ isActive }) => (
+                                    <>
+                                        <div
+                                            className={`h-0.5 bg-(--text-color) transition-all duration-300 ${isActive ? "w-10" : "w-0"}`}
+                                        ></div>
+                                        About
+                                    </>
+                                )}
                             </NavLink>
                             <div className="h-0.5 w-full bg-(--text-color)/50"></div>
                             <NavLink
                                 to="/wishlist"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="font-instrument italic text-4xl text-(--text-color) cursor-pointer flex justify-center items-center gap-2"
+                                // onClick={() => setIsMobileMenuOpen(false)}
+                                className={({ isActive }) =>
+                                    `font-instrument italic text-4xl cursor-pointer flex justify-center items-center gap-2 transition-colors duration-300 ${isActive ? "text-(--text-color)" : "text-(--text-muted)"}`
+                                }
                             >
-                                <div className="hidden h-0.5 w-10 bg-(--text-color)"></div>
-                                Wishlist
+                                {({ isActive }) => (
+                                    <>
+                                        <div
+                                            className={`h-0.5 bg-(--text-color) transition-all duration-300 ${isActive ? "w-10" : "w-0"}`}
+                                        ></div>
+                                        Wishlist
+                                    </>
+                                )}
                             </NavLink>
+                            <button
+                                onClick={() => {
+                                    setIsMobileMenuOpen(false);
+                                    setIsCartOpen((prev) => !prev);
+                                }}
+                                className={`font-instrument italic text-4xl cursor-pointer flex justify-center items-center gap-2 transition-colors duration-300 ${isCartOpen ? "text-(--text-color)" : "text-(--text-muted)"}`}
+                            >
+                                <div
+                                    className={`h-0.5 bg-(--text-color) transition-all duration-300 ${isCartOpen ? "w-10" : "w-0"}`}
+                                ></div>
+                                Cart
+                            </button>
                         </div>
 
                         <div className="flex flex-col gap-3 w-full mt-8">
