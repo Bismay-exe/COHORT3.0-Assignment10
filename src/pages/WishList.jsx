@@ -41,8 +41,6 @@ const WishList = () => {
                     </div>
                 </div>
 
-                {/* Empty State */}
-
                 {wishlist.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-40">
                         <Heart

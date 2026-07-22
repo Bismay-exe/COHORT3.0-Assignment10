@@ -17,7 +17,6 @@ export const useAuth = () => {
     formState: { errors },
   } = useForm();
 
-  // login logic
   let loginFormSubmit = (data) => {
     let user = registeredUsers.find((val) => {
       return val.email === data.email && val.password === data.password;
@@ -36,19 +35,24 @@ export const useAuth = () => {
     navigate("/");
   };
 
-  // register logic
   let registerFormSubmit = (data) => {
-    // Check if user exists
     let userExists = registeredUsers.find((val) => val.email === data.email);
     if (userExists) {
         toast.error("User with this email already exists!");
         return;
     }
 
-    let arr = [...registeredUsers, data];
+    const newUser = {
+      ...data,
+      cart: [],
+      wishlist: []
+    };
+    
+    let arr = [...registeredUsers, newUser];
+
     setRegisteredUsers(arr);
-    setLoggedInUser(data);
-    localStorage.setItem("loggedinUser", JSON.stringify(data));
+    setLoggedInUser(newUser);
+    localStorage.setItem("loggedinUser", JSON.stringify(newUser));
     localStorage.setItem("registeredUsers", JSON.stringify(arr));
     
     toast.success("User registered successfully!");
@@ -57,7 +61,6 @@ export const useAuth = () => {
     reset();
   };
 
-  // logout logic
   let logoutUser = () => {
     localStorage.removeItem("loggedinUser");
     setLoggedInUser(null);

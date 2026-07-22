@@ -15,10 +15,8 @@ const Home = () => {
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [loading, setLoading] = useState(true);
 
-    // Replace this with your actual cart state/context
     const cartItems = 0;
 
-    // Fetch Products
     const getProducts = async () => {
         try {
             setLoading(true);
@@ -31,7 +29,6 @@ const Home = () => {
         }
     };
 
-    // Fetch Categories
     const getCategories = async () => {
         try {
             const res = await axios.get(
@@ -48,15 +45,12 @@ const Home = () => {
         getCategories();
     }, []);
 
-    // Top Rated
     const topRatedProducts = [...products]
         .sort((a, b) => b.rating - a.rating)
         .slice(0, 4);
 
-    // New Arrivals
     const newArrivals = [...products].sort((a, b) => b.id - a.id).slice(0, 4);
 
-    // Products with 4.5+ rating
     const totalTopRated = products.filter(
         (product) => product.rating >= 4.5,
     ).length;

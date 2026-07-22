@@ -31,7 +31,7 @@ const ProductDetails = () => {
     const [singleProductData, setSingleProductData] = useState(null);
     const [selectedImage, setSelectedImage] = useState("");
 
-    let isInCart = cartItems.find((val) => val.id === singleProductData.id);
+    let isInCart = cartItems.find((val) => val.id === singleProductData?.id);
     let isInWishlist = wishlist.some((item) => item.id === singleProductData?.id);
 
     const { id } = useParams();
@@ -256,9 +256,9 @@ const ProductDetails = () => {
                                 {isInCart ? (
                                     <div className="group flex-1 flex items-center justify-between px-5 py-4 rounded-xl bg-(--text-color) text-(--bg-color) cursor-pointer">
                                         <div className="flex items-center gap-3">
-                                            <PackageCheck size={19} />
-                                            <span className="font-space hidden sm:block">
-                                                Product is added to Cart
+                                            <PackageCheck size={19} className="w-6" />
+                                            <span className="font-space text-left leading-none flex gap-2">
+                                                <span className="hidden sm:block">Product is</span> Added to Cart
                                             </span>
                                         </div>
                                         <span className="font-space">
@@ -273,7 +273,7 @@ const ProductDetails = () => {
                                     >
                                         <div className="flex items-center gap-3">
                                             <ShoppingBag size={19} />
-                                            <span className="font-space">Add to Cart</span>
+                                            <span className="font-space text-left leading-none">Add to Cart</span>
                                         </div>
                                         <span className="font-space">
                                             ${singleProductData.price.toFixed(2)}
@@ -408,129 +408,6 @@ const ProductDetails = () => {
                             {/* Reviews */}
                             {singleProductData.reviews?.length > 0 && (
                                 <div>
-                                    {/* Review Header */}
-                                    <div className="gap-10 lg:gap-24">
-                                        <div>
-                                            <span className="font-space text-xs uppercase tracking-[0.2em] text-(--text-muted)">
-                                                Reviews
-                                            </span>
-                                        </div>
-
-                                        <div className="flex flex-row sm:flex-row sm:items-end justify-between gap-8">
-                                            <div>
-                                                <h2 className="font-inter text-4xl md:text-5xl font-semibold tracking-[-0.04em]">
-                                                    People have
-                                                    <br />
-                                                    spoken.
-                                                </h2>
-
-                                                <p className="font-space text-sm text-(--text-muted) mt-4">
-                                                    Feedback from verified SkyMart customers.
-                                                </p>
-                                            </div>
-
-                                            {/* Score */}
-                                            <div className="sm:text-right">
-                                                <span className="font-instrument italic text-7xl md:text-8xl leading-none">
-                                                    {singleProductData.rating}
-                                                </span>
-
-                                                <div className="flex sm:justify-end gap-1 mt-3">
-                                                    {[1, 2, 3, 4, 5].map((star) => (
-                                                        <Star
-                                                            key={star}
-                                                            size={15}
-                                                            className={
-                                                                star <= Math.round(singleProductData.rating)
-                                                                    ? "fill-yellow-400 text-yellow-400"
-                                                                    : "text-(--text-muted)"
-                                                            }
-                                                        />
-                                                    ))}
-                                                </div>
-
-                                                <p className="font-space text-xs text-(--text-muted) mt-2">
-                                                    {singleProductData.reviews.length} reviews
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Review List */}
-                                    <div className="max-w-5xl ml-auto mt-16">
-                                        {singleProductData.reviews.map((review, index) => (
-                                            <article
-                                                key={index}
-                                                className="grid sm:grid-cols-[200px_1fr] gap-6 sm:gap-12 py-8 border-t border-(--border-color)"
-                                            >
-                                                {/* Customer */}
-                                                <div>
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="w-9 h-9 rounded-full flex items-center justify-center bg-(--text-color) text-(--bg-color) font-space text-xs">
-                                                            {review.reviewerName
-                                                                .split(" ")
-                                                                .map((name) => name[0])
-                                                                .join("")
-                                                                .slice(0, 2)}
-                                                        </div>
-
-                                                        <div>
-                                                            <p className="font-inter text-sm font-medium">
-                                                                {review.reviewerName}
-                                                            </p>
-
-                                                            <p className="font-space text-[11px] text-(--text-muted) mt-0.5">
-                                                                Verified buyer
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                {/* Review */}
-                                                <div>
-                                                    <div className="flex items-center justify-between gap-4">
-                                                        <div className="flex gap-1">
-                                                            {[1, 2, 3, 4, 5].map((star) => (
-                                                                <Star
-                                                                    key={star}
-                                                                    size={14}
-                                                                    className={
-                                                                        star <= review.rating
-                                                                            ? "fill-yellow-400 text-yellow-400"
-                                                                            : "text-(--text-muted)"
-                                                                    }
-                                                                />
-                                                            ))}
-                                                        </div>
-
-                                                        <time className="font-space text-xs text-(--text-muted)">
-                                                            {new Date(review.date).toLocaleDateString(
-                                                                "en-US",
-                                                                {
-                                                                    month: "short",
-                                                                    day: "numeric",
-                                                                    year: "numeric",
-                                                                },
-                                                            )}
-                                                        </time>
-                                                    </div>
-
-                                                    <p className="font-inter text-xl md:text-2xl leading-relaxed mt-5">
-                                                        “{review.comment}”
-                                                    </p>
-                                                </div>
-                                            </article>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-
-                        <div className="hidden mt-24 lg:mt-0">
-
-                            {/* Reviews */}
-                            {singleProductData.reviews?.length > 0 && (
-                                <div className="mt-24 lg:mt-0 pt-8 border-t border-(--border-color)">
                                     {/* Review Header */}
                                     <div className="gap-10 lg:gap-24">
                                         <div>
