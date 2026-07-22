@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router";
 
 export const MyStore = createContext();
 
@@ -10,8 +9,6 @@ export const ContextProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
     const [wishlist, setWishlist] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
-
-    const { pathname } = useLocation();
 
     const getProductsData = async () => {
         try {
@@ -26,10 +23,6 @@ export const ContextProvider = ({ children }) => {
     useEffect(() => {
         getProductsData();
     }, []);
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [pathname]);
 
     const addToCart = (product) => {
         setCartItems((prev) => [...prev, { ...product, quantity: 1 }]);

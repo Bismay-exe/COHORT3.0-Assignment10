@@ -13,14 +13,13 @@ import {
     Heart,
 } from "lucide-react";
 import toast from "react-hot-toast";
-import { Toaster } from "react-hot-toast";
-
-const notify = () => toast.error("Here is your toast.");
+import { useAuth } from "../hooks/useAuth";
 
 const Navbar = () => {
-    const { theme, toggleTheme } = useTheme();
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    let [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     let { isCartOpen, setIsCartOpen, totalQuantity } = useContext(MyStore);
+    const { theme, toggleTheme } = useTheme();
+    const { logoutUser, loggedInUser } = useAuth();
 
     const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
@@ -36,6 +35,7 @@ const Navbar = () => {
             <div className="hidden lg:flex items-center gap-8">
                 <NavLink
                     to="/"
+                    end
                     className={({ isActive }) =>
                         `underline-effect font-space tracking-wider text-xl cursor-pointer ${isActive ? "text-(--text-color)" : "text-(--text-muted)"}`
                     }
@@ -66,7 +66,7 @@ const Navbar = () => {
                         <UserRound className="text-(--text-color)" />
                     </div>
                     <p className="text-(--text-color) group-hover:text-(--text-color) font-space tracking-wider transition-all duration-300 ease-in-out">
-                        User Name
+                        {loggedInUser?.name || "User Name"}
                     </p>
                 </div>
                 <button
@@ -99,42 +99,12 @@ const Navbar = () => {
                     )}
                 </button>
                 <button
-                    onClick={() =>
-                        toast.custom((t) => (
-                            <div
-                                className={`
-                                    ${t.visible ? "animate-custom-enter" : "animate-custom-leave"}
-                                    flex items-center gap-4
-                                    w-90
-                                    rounded-2xl
-                                    border border-(--border-color)
-                                    bg-(--bg-secondary-color)
-                                    p-5
-                                    shadow-xl
-        `}
-                            >
-                                <div className="w-12 h-12 rounded-xl bg-(--red-bg) flex items-center justify-center">
-                                    <LogOut className="text-(--red)" size={20} />
-                                </div>
-
-                                <div className="flex-1">
-                                    <p className="font-inter font-semibold text-(--text-color)">
-                                        Logged Out
-                                    </p>
-
-                                    <p className="font-space text-sm text-(--text-muted) mt-1">
-                                        You have successfully signed out.
-                                    </p>
-                                </div>
-                            </div>
-                        ))
-                    }
+                    onClick={() => logoutUser()}
                     className="hidden lg:block backdrop-blur-sm p-4 hover:bg-(--red-bg) rounded-xl transition-all duration-300 ease-in-out group cursor-pointer"
                 >
                     <LogOut className="group-hover:text-(--red) transition-all duration-600 ease-in-out" />
                 </button>
 
-                <Toaster position="top-right" reverseOrder={false} />
 
                 <button
                     onClick={toggleMenu}
@@ -150,6 +120,7 @@ const Navbar = () => {
                         <div className="flex flex-col items-start gap-6 w-full py-4 px-4">
                             <NavLink
                                 to="/"
+                                end
                                 // onClick={() => setIsMobileMenuOpen(false)}
                                 className={({ isActive }) =>
                                     `font-instrument italic text-4xl cursor-pointer flex justify-center items-center gap-2 transition-colors duration-300 ${isActive ? "text-(--text-color)" : "text-(--text-muted)"}`
@@ -234,9 +205,9 @@ const Navbar = () => {
                                         <UserRound className="text-(--text-color)" />
                                     </div>
                                     <p className="text-(--text-color) group-hover:text-(--text-color) font-space tracking-wider transition-all duration-300 ease-in-out">
-                                        User Name
+                                        {loggedInUser?.name || "User Name"}
                                     </p>
-                                    <button className="flex justify-center items-center gap-3 bg-(--red-bg)/10 text-(--red) py-4 rounded-2xl hover:bg-(--red-bg)/20 transition-colors duration-300">
+                                    <button onClick={() => logoutUser()} className="flex justify-center items-center gap-3 bg-(--red-bg)/10 text-(--red) py-4 rounded-2xl hover:bg-(--red-bg)/20 transition-colors duration-300 cursor-pointer px-4">
                                         <LogOut size={20} />
                                     </button>
                                 </div>

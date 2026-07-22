@@ -118,10 +118,10 @@ const ProductCards = ({ product }) => {
                             e.stopPropagation();
                             toggleWishlist(product);
                         }}
-                        className={`aspect-square p-4 rounded-xl border flex items-center justify-center transition-all group cursor-pointer ${
+                        className={`aspect-square p-4 rounded-xl border flex items-center justify-center transition-all duration-300 ease-in-out group cursor-pointer ${
                             isInWishlist
                                 ? "bg-(--pink-bg) border-(--pink-bg) text-(--pink)"
-                                : "border-(--border-color) bg-(--bg-color) text-(--text-muted) hover:text-(--pink) hover:bg-(--pink-bg) hover:border-(--pink)"
+                                : "border-(--border-color) bg-(--bg-color) text-(--text-muted) hover:text-(--pink) hover:bg-(--pink-bg) hover:border-(--pink-bg)"
                         }`}>
                         <Heart
                             size={20}

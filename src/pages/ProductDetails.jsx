@@ -314,10 +314,10 @@ const ProductDetails = () => {
 
                                 <button 
                                     onClick={() => toggleWishlist(singleProductData)}
-                                    className={`aspect-square p-4 rounded-xl border flex items-center justify-center transition-all cursor-pointer ${
+                                    className={`aspect-square p-4 rounded-xl border flex items-center justify-center transition-all duration-300 ease-in-out cursor-pointer ${
                                         isInWishlist 
-                                            ? "bg-(--red-bg) border-(--red-bg) text-(--red)" 
-                                            : "border-(--border-color) bg-(--bg-color) text-(--text-muted) hover:text-(--red) hover:bg-(--red-bg)"
+                                            ? "bg-(--pink-bg) border-(--pink-bg) text-(--pink)" 
+                                            : "border-(--border-color) bg-(--bg-color) text-(--text-muted) hover:border-(--pink-bg) hover:text-(--pink) hover:bg-(--pink-bg)"
                                     }`}>
                                     <Heart size={20} className={isInWishlist ? "fill-current" : ""} />
                                 </button>

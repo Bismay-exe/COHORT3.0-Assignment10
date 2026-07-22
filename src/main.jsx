@@ -1,16 +1,18 @@
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.jsx";
+import { AuthProvider } from "./contexts/AuthContext.jsx";
 import { ThemeProvider } from "./contexts/ThemeContext.jsx";
 import { ContextProvider } from "./contexts/MyContext.jsx";
-import { BrowserRouter } from "react-router";
+import AppRoutes from "./routes/AppRoutes.jsx";
+import { Toaster } from "react-hot-toast";
 
 createRoot(document.getElementById("root")).render(
     <ThemeProvider>
-        <BrowserRouter>
+        <AuthProvider>
             <ContextProvider>
-                <App />
+                <AppRoutes />
+                <Toaster position="top-right" />
             </ContextProvider>
-        </BrowserRouter>
+        </AuthProvider>
     </ThemeProvider>,
 );
