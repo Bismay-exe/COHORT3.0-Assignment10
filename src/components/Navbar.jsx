@@ -105,7 +105,7 @@ const Navbar = () => {
                                 className={`
                                     ${t.visible ? "animate-custom-enter" : "animate-custom-leave"}
                                     flex items-center gap-4
-                                    w-[360px]
+                                    w-90
                                     rounded-2xl
                                     border border-(--border-color)
                                     bg-(--bg-secondary-color)
