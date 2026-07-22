@@ -4,11 +4,11 @@ const CategoryCard = ({ category, index, categoryImage, onClick }) => {
     return (
         <article
             onClick={onClick}
-            className="aspect-video lg:aspect-square group relative overflow-hidden rounded-2xl md:rounded-3xl border border-(--border-color) bg-(--bg-secondary-color) cursor-pointer"
+            className="aspect-video lg:aspect-square group relative overflow-hidden rounded-2xl md:rounded-3xl border border-(--border-color) hover:border-(--text-muted) bg-(--bg-secondary-color) transition-all duration-300 ease cursor-pointer"
         >
             {/* Category Info */}
             <div className="relative z-10 p-4 sm:p-5 md:p-6 flex justify-between items-start @container">
-                <p className="w-1/2 font-inter text-[8cqw] md:text-[12cqw] font-medium">
+                <p className="w-1/2 font-inter text-[8cqw] md:text-[12cqw] font-medium text-(--text-color) md:text-(--text-muted) group-hover:text-(--text-color)">
                     {category.name}
                 </p>
 
@@ -36,7 +36,7 @@ const CategoryCard = ({ category, index, categoryImage, onClick }) => {
                         transition-transform
                         duration-700
                         ease-out
-                        group-hover:scale-110
+                        group-hover:scale-120
                     "
                 />
             )}

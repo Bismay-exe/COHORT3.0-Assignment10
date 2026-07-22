@@ -1,4 +1,4 @@
-import { Heart, Minus, Plus, ShoppingBag, Star, Trash2 } from "lucide-react";
+import { HeartOff, Minus, Plus, ShoppingBag, Star, } from "lucide-react";
 import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { MyStore } from "../contexts/MyContext";
@@ -62,7 +62,7 @@ const WishListCards = ({ product }) => {
                             onClick={() => toggleWishlist(product)}
                             className="shrink-0 w-10 h-10 rounded-xl bg-(--red-bg) md:bg-(--bg-color) hover:bg-(--red-bg) md:text-(--text-color) text-(--red) hover:text-(--red) transition-all cursor-pointer"
                         >
-                            <Trash2 size={16} className="mx-auto" />
+                            <HeartOff size={16} className="mx-auto" />
                         </button>
                     </div>
 

@@ -12,16 +12,17 @@ import {
     Package,
     PackageCheck,
     PackageMinus,
+    HeartOff,
 } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { MyStore } from "../contexts/MyContext";
 
 const ProductDetails = () => {
-    let { 
-        cartItems, 
-        addToCart, 
-        incrementQuantity, 
+    let {
+        cartItems,
+        addToCart,
+        incrementQuantity,
         decrementQuantity,
         wishlist,
         toggleWishlist
@@ -196,7 +197,7 @@ const ProductDetails = () => {
                                     ${singleProductData.price.toFixed(2)}
                                 </p>
 
-                                <span className="px-3 py-1.5 rounded-full bg-(--red-bg) text-(--red) font-space text-sm">
+                                <span className="px-3 py-1.5 rounded-full bg-(--green-bg) text-(--green) font-space text-sm">
                                     {singleProductData.discountPercentage}% OFF
                                 </span>
                             </div>
@@ -312,14 +313,20 @@ const ProductDetails = () => {
                                     </button>
                                 )}
 
-                                <button 
+                                <button
                                     onClick={() => toggleWishlist(singleProductData)}
-                                    className={`aspect-square p-4 rounded-xl border flex items-center justify-center transition-all duration-300 ease-in-out cursor-pointer ${
-                                        isInWishlist 
-                                            ? "bg-(--pink-bg) border-(--pink-bg) text-(--pink)" 
+                                    className={`aspect-square p-4 rounded-xl border flex items-center justify-center transition-all duration-300 ease-in-out cursor-pointer ${isInWishlist
+                                            ? "bg-(--pink-bg) border-(--pink-bg) text-(--pink)"
                                             : "border-(--border-color) bg-(--bg-color) text-(--text-muted) hover:border-(--pink-bg) hover:text-(--pink) hover:bg-(--pink-bg)"
-                                    }`}>
-                                    <Heart size={20} className={isInWishlist ? "fill-current" : ""} />
+                                        }`}>
+                                    {isInWishlist ? (
+                                        <Heart
+                                            size={20}
+                                            className="fill-current"
+                                        />) : (<HeartOff
+                                            size={20}
+                                        />)
+                                    }
                                 </button>
 
                             </div>
@@ -583,11 +590,6 @@ const ProductDetails = () => {
                             )}
 
                         </div>
-
-                        {/* trying myself */}
-                        {/* ===================================================== */}
-                        {/* LOWER PRODUCT CONTENT                                 */}
-                        {/* ===================================================== */}
 
                         <div className="mt-24 lg:mt-32">
 

@@ -44,6 +44,7 @@ const Navbar = () => {
                 </NavLink>
                 <NavLink
                     to="/products"
+                    end
                     className={({ isActive }) =>
                         `underline-effect font-space tracking-wider text-xl cursor-pointer ${isActive ? "text-(--text-color)" : "text-(--text-muted)"}`
                     }

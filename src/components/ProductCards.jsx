@@ -26,7 +26,7 @@ const ProductCards = ({ product }) => {
                 />
 
                 {/* Category */}
-                <span className="absolute top-4 left-4 px-3 py-1.5 rounded-full border border-(--border-color) bg-(--text-color) text-(--bg-color) font-space text-xs tracking-wider capitalize">
+                <span className="absolute top-4 left-4 px-3 py-1.5 rounded-full zborder border-(--border-color) bg-cyan-500/10 text-cyan-500 font-space text-xs tracking-wider capitalize">
                     {product.category}
                 </span>
             </div>
@@ -54,7 +54,7 @@ const ProductCards = ({ product }) => {
                         </span>
 
                         {product.discountPercentage > 0 && (
-                            <span className="font-space text-xs text-(--text-muted) line-through">
+                            <span className="font-space text-xs text-(--green) line-through">
                                 ${product.price.toFixed(2)}
                             </span>
                         )}

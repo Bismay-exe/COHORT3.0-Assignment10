@@ -60,7 +60,7 @@ const CartSidebar = () => {
                 </div>
 
                 {/* Cart Content */}
-                <div className="flex-1 overflow-y-auto p-5">
+                <div className="flex-1 overflow-y-auto custom-scrollbar p-5">
                     {cartItems.length > 0 ? (
                         <div className="flex flex-col gap-3">
                             {cartItems.map((elem) => (
