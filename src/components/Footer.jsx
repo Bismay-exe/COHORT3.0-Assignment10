@@ -2,7 +2,7 @@ import { Moon } from "lucide-react";
 
 const Footer = () => {
     return (
-        <footer className="max-w-[1920px] w-full xbg-linear-to-t from-(--bg-secondary-color) to-transparent text-(--text-color) xborder-t border-(--border-color) px-4 md:px-8 pt-12 pb-6">
+        <footer className="max-w-[1920px] w-full xbg-linear-to-t from-(--bg-secondary-color) to-transparent text-(--text-color) border-t border-(--border-color) px-4 md:px-8 pt-12 pb-6">
 
             {/* Main Footer */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">

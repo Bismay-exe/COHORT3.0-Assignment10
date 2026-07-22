@@ -86,7 +86,7 @@ const WishListCards = ({ product }) => {
                                 ${product.price}
                             </h3>
 
-                            <span className="rounded-full md:bg-(--red-bg) text-(--red) font-space text-[10px] sm:px-3 sm:py-1.5 sm:text-xs leading-none">
+                            <span className="rounded-full md:bg-(--green-bg) text-(--green) font-space text-[10px] sm:px-3 sm:py-1.5 sm:text-xs leading-none">
                                 {product.discountPercentage}% OFF
                             </span>
                         </div>
