@@ -77,5 +77,6 @@ export const useAuth = () => {
     loginFormSubmit,
     registerFormSubmit,
     logoutUser,
+    loggedInUser,
   };
 };
