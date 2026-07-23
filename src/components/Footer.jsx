@@ -1,6 +1,11 @@
 import { Moon } from "lucide-react";
+import { useNavigate } from "react-router";
 
 const Footer = () => {
+
+    const navigate = useNavigate();
+
+
     return (
         <footer className="max-w-[1920px] w-full xbg-linear-to-t from-(--bg-secondary-color) to-transparent text-(--text-color) border-t border-(--border-color) px-4 md:px-8 pt-12 pb-6">
 
@@ -27,15 +32,15 @@ const Footer = () => {
                     </h3>
 
                     <div className="flex flex-col items-start gap-3 text-(--text-muted)">
-                        <a className="underline-effect hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
+                        <button onClick={() => navigate("/products")} className="underline-effect hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
                             All Products
-                        </a>
-                        <a className="underline-effect hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
+                        </button>
+                        <button onClick={() => navigate("/products")} className="underline-effect hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
                             New Arrivals
-                        </a>
-                        <a className="underline-effect hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
+                        </button>
+                        <button onClick={() => navigate("/products")} className="underline-effect hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
                             Popular
-                        </a>
+                        </button>
                     </div>
                 </div>
 

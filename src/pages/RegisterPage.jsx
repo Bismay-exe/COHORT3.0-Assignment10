@@ -19,9 +19,18 @@ const RegisterPage = () => {
         <div className="mb-12 sm:mb-16 lg:mb-24">
           <div className="flex items-start justify-between gap-6">
             <div>
-              <p className="font-space uppercase tracking-[0.4em] text-xs text-(--text-muted)">
-                SkyMart
-              </p>
+              {/* Login Link */}
+              <button
+                onClick={() => navigate("/auth/login")}
+                className="flex group items-center gap-2 whitespace-nowrap font-inter text-base lg:text-lg text-(--text-muted) transition-colors cursor-pointer"
+              >
+                <span className="hidden sm:block">Already have an account? </span><span className="sm:italic group-hover:text-(--text-color)">Sign in</span>
+
+                <ArrowRight
+                  size={18}
+                  className="group-hover:text-(--text-color) transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </button>
               <h1 className="font-inter text-[clamp(3.1rem,9vw,7rem)] font-semibold tracking-tighter leading-none mt-3 sm:mt-4 lg:mt-5">
                 Create
                 <br />
@@ -32,19 +41,6 @@ const RegisterPage = () => {
                 orders, and enjoy a personalized shopping experience.
               </p>
             </div>
-
-            {/* Register Link */}
-            <button
-              onClick={() => navigate("/auth/login")}
-              className="hidden md:flex group items-center gap-2 whitespace-nowrap font-inter text-base lg:text-lg text-(--text-muted) hover:text-(--text-color) transition-colors"
-            >
-              <span className="underline-effect cursor-pointer">Login</span>
-
-              <ArrowRight
-                size={18}
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </button>
           </div>
         </div>
 

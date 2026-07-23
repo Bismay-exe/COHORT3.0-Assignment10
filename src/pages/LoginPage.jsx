@@ -7,14 +7,23 @@ const LoginPage = () => {
 
   return (
     <main className="min-h-screen bg-(--bg-color) text-(--text-color)">
-      <section className="max-w-xl lg:max-w-7xl mx-auto min-h-screen flex flex-col justify-center px-5 sm:px-8 lg:px-20 py-12 sm:py-16 lg:py-20">
+      <section className="sm:max-w-xl lg:max-w-7xl mx-auto min-h-screen flex flex-col justify-center px-5 sm:px-8 lg:px-20 py-12 sm:py-16 lg:py-20">
         {/* Hero */}
         <div className="mb-12 sm:mb-16 lg:mb-24">
           <div className="flex items-start justify-between gap-6">
             <div>
-              <p className="font-space uppercase tracking-[0.4em] text-xs text-(--text-muted)">
-                SkyMart
-              </p>
+              {/* Register Link */}
+              <button
+                onClick={() => navigate("/auth/register")}
+                className="flex group items-center gap-2 whitespace-nowrap font-inter text-base lg:text-lg text-(--text-muted) transition-colors cursor-pointer"
+              >
+                <span className="hidden sm:block">New to SkyMart? </span><span className="sm:italic group-hover:text-(--text-color)">Create Account</span>
+
+                <ArrowRight
+                  size={18}
+                  className="group-hover:text-(--text-color) transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </button>
               <h1 className="font-inter text-[clamp(3.1rem,9vw,7rem)] font-semibold tracking-tighter leading-none mt-3 sm:mt-4 lg:mt-5">
                 Welcome
                 <br />
@@ -29,7 +38,7 @@ const LoginPage = () => {
             {/* Register Link */}
             <button
               onClick={() => navigate("/auth/register")}
-              className="hidden md:flex group items-center gap-2 whitespace-nowrap font-inter text-base lg:text-lg text-(--text-muted) hover:text-(--text-color) transition-colors"
+              className="hidden flex group items-center gap-2 whitespace-nowrap font-inter text-base lg:text-lg text-(--text-muted) hover:text-(--text-color) transition-colors"
             >
               <span className="underline-effect cursor-pointer">Create Account</span>
 
