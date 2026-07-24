@@ -1,67 +1,69 @@
 import { Boxes, LayoutGrid, ShoppingBag, Star } from "lucide-react";
+import { useContext } from "react";
+import { MyStore } from "../../contexts/MyContext";
 
 const OverView = ({ products, categories, cartItems, totalTopRated }) => {
+
+    let { totalQuantity } = useContext(MyStore);
+
     return (
-        <section className="py-10 border-b border-(--border-color)">
-            <p className="font-space text-xs uppercase tracking-[0.2em] text-(--text-muted) mb-7">
-                Store Overview
-            </p>
-
-            <div className="flex flex-wrap">
-                {/* Total Products */}
-                <div className="w-1/2 lg:w-1/4 py-4 lg:pr-8">
-                    <div className="flex items-center gap-2 text-(--text-muted)">
-                        <ShoppingBag size={15} />
-
-                        <span className="font-space text-xs">Total Products</span>
-                    </div>
-
-                    <p className="font-inter text-4xl md:text-5xl font-semibold tracking-tight mt-3">
-                        {products.length}
-                    </p>
+        <section className="py-24 md:py-32 bg-(--bg-color)">
+            <div className="max-w-5xl mx-auto px-4 md:px-8">
+                
+                {/* Apple-style minimalist header */}
+                <div className="text-center mb-20 md:mb-32">
+                    <h2 className="font-inter text-3xl md:text-5xl font-semibold tracking-[-0.04em] text-(--text-color)">
+                        The numbers speak for themselves.
+                    </h2>
                 </div>
 
-                {/* Cart */}
-                <div className="w-1/2 lg:w-1/4 py-4 lg:px-8 lg:border-l border-(--border-color)">
-                    <div className="flex items-center gap-2 text-(--text-muted)">
-                        <Boxes size={15} />
-
-                        <span className="font-space text-xs">Cart Items</span>
+                {/* Pure Typography Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-16 md:gap-8 text-center">
+                    
+                    {/* Total Products */}
+                    <div className="flex flex-col items-center justify-center">
+                        <ShoppingBag size={28} className="text-(--text-color) mb-6" strokeWidth={1.5} />
+                        <p className="font-inter text-6xl md:text-7xl font-medium tracking-tighter text-(--text-color) mb-3">
+                            {products.length}
+                        </p>
+                        <span className="font-inter text-sm md:text-base text-(--text-muted) font-medium tracking-wide">
+                            Total Products
+                        </span>
                     </div>
 
-                    <p className="font-inter text-4xl md:text-5xl font-semibold tracking-tight mt-3">
-                        {cartItems}
-                    </p>
-                </div>
-
-                {/* Top Rated */}
-                <div className="w-1/2 lg:w-1/4 py-4 lg:px-8 lg:border-l border-(--border-color)">
-                    <div className="flex items-center gap-2 text-(--text-muted)">
-                        <Star size={15} />
-
-                        <span className="font-space text-xs">Top Rated</span>
+                    {/* Top Rated */}
+                    <div className="flex flex-col items-center justify-center">
+                        <Star size={28} className="text-(--text-color) mb-6" strokeWidth={1.5} />
+                        <p className="font-inter text-6xl md:text-7xl font-medium tracking-tighter text-(--text-color) mb-3">
+                            {totalTopRated}
+                        </p>
+                        <span className="font-inter text-sm md:text-base text-(--text-muted) font-medium tracking-wide">
+                            Top Rated (4.5+)
+                        </span>
                     </div>
 
-                    <p className="font-inter text-4xl md:text-5xl font-semibold tracking-tight mt-3">
-                        {totalTopRated}
-                    </p>
-
-                    <p className="font-space text-[11px] text-(--text-muted) mt-1">
-                        Rated 4.5 or higher
-                    </p>
-                </div>
-
-                {/* Categories */}
-                <div className="w-1/2 lg:w-1/4 py-4 lg:pl-8 lg:border-l border-(--border-color)">
-                    <div className="flex items-center gap-2 text-(--text-muted)">
-                        <LayoutGrid size={15} />
-
-                        <span className="font-space text-xs">Categories</span>
+                    {/* Categories */}
+                    <div className="flex flex-col items-center justify-center">
+                        <LayoutGrid size={28} className="text-(--text-color) mb-6" strokeWidth={1.5} />
+                        <p className="font-inter text-6xl md:text-7xl font-medium tracking-tighter text-(--text-color) mb-3">
+                            {categories.length}
+                        </p>
+                        <span className="font-inter text-sm md:text-base text-(--text-muted) font-medium tracking-wide">
+                            Categories
+                        </span>
                     </div>
 
-                    <p className="font-inter text-4xl md:text-5xl font-semibold tracking-tight mt-3">
-                        {categories.length}
-                    </p>
+                    {/* Cart Items */}
+                    <div className="flex flex-col items-center justify-center">
+                        <Boxes size={28} className="text-(--text-color) mb-6" strokeWidth={1.5} />
+                        <p className="font-inter text-6xl md:text-7xl font-medium tracking-tighter text-(--text-color) mb-3">
+                            {totalQuantity}
+                        </p>
+                        <span className="font-inter text-sm md:text-base text-(--text-muted) font-medium tracking-wide">
+                            Items in Cart
+                        </span>
+                    </div>
+                    
                 </div>
             </div>
         </section>

@@ -1,51 +1,90 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router";
 
 const Hero = () => {
     const navigate = useNavigate();
 
     return (
-        <section className="relative overflow-hidden py-16 md:py-24 border-b border-(--border-color)">
-            {/* Background Text */}
-            <span className="absolute right-0 top-1/2 -translate-y-1/2 font-instrument italic text-[clamp(8rem,20vw,22rem)] leading-none opacity-[0.025] pointer-events-none">
-                SkyMart
-            </span>
+        <section className="relative pt-22 pb-12 md:pt-18 md:pb-18 xl:pt-24 xl:pb-24 overflow-hidden zborder-b border-(--border-color)">
+            {/* Background */}
+            <div className="@container w-full h-full flex justify-center items-center pointer-events-none">
+                <div className="font-inter text-[26cqw] leading-none tracking-wide text-(--text-color)">
+                    SkyMart
+                </div>
+            </div>
 
-            <div className="relative">
-                <div className="flex items-center gap-3 mb-5">
-                    <Sparkles size={15} className="text-(--text-muted)" />
+            <div className="absolute inset-0 flex justify-evenly items-center gap-5 pt-12 pb-0 md:pt-12 md:pb-12 @container">
+                {/* Card 1 */}
+                <div className="h-full w-full flex justify-center items-start">
+                    <div
+                        onClick={() => navigate("/products?category=mens-shoes")}
+                        className="group relative flex flex-col w-[20cqw] sm:w-[16cqw] md:w-[14cqw] -rotate-6 hover:rotate-6 transition-all duration-500 ease-in-out rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer"
+                    >
+                        <div className="relative overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl bg-(--bg-secondary-color) aspect-square">
+                            <img
+                                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"
+                                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                alt="Sneakers"
+                            />
+                        </div>
 
-                    <p className="font-space text-xs uppercase tracking-[0.2em] text-(--text-muted)">
-                        Welcome to SkyMart
-                    </p>
+                        <div className="absolute bottom-0 hidden md:flex flex-col p-2 bg-linear-to-b from-black/0 to-black/80 w-full">
+                            <h3 className="font-inter text-xl font-semibold text-white tracking-tight">
+                                Sneakers
+                            </h3>
+                            <p className="font-space text-sm text-white/55">
+                                Everyday essentials.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                <h1 className="font-inter text-5xl md:text-7xl lg:text-8xl font-semibold tracking-[-0.06em] leading-[0.95] max-w-5xl">
-                    Find what you need.
-                    <br />
-                    <span className="font-instrument italic font-normal">
-                        Love what you find.
-                    </span>
-                </h1>
-
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-8 mt-10">
-                    <p className="font-space text-sm md:text-base leading-relaxed text-(--text-muted) max-w-lg">
-                        Explore products across dozens of categories, discover top-rated
-                        picks, and find something new every time you visit.
-                    </p>
-
-                    <button
-                        onClick={() => navigate("/products")}
-                        className="group flex items-center gap-4 font-space text-sm cursor-pointer"
+                <div className="h-full w-full flex justify-center items-end">
+                    <div
+                        onClick={() => navigate("/products?category=smartphones")}
+                        className="group relative flex flex-col w-[20cqw] sm:w-[16cqw] md:w-[14cqw] rotate-6 hover:-rotate-6 transition-all duration-500 ease-in-out rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer"
                     >
-                        Explore all products
-                        <span className="w-10 h-10 flex items-center justify-center rounded-full bg-(--text-color) text-(--bg-color)">
-                            <ArrowRight
-                                size={17}
-                                className="transition-transform duration-300 group-hover:translate-x-0.5"
+                        <div className="relative overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl bg-(--bg-secondary-color) aspect-square">
+                            <img
+                                src="https://images.unsplash.com/photo-1749716491521-af90e3b6feb6?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                alt="Smartphone"
                             />
-                        </span>
-                    </button>
+                        </div>
+
+                        <div className="absolute bottom-0 hidden md:flex flex-col p-2 bg-linear-to-b from-black/0 to-black/80 w-full">
+                            <h3 className="font-inter text-xl font-semibold text-white tracking-tight">
+                                Smartphone
+                            </h3>
+                            <p className="font-space text-sm text-white/55">
+                                Pro camera system.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="h-full w-full flex justify-center items-start">
+                    <div
+                        onClick={() => navigate("/products?category=mens-watches")}
+                        className="group relative flex flex-col w-[20cqw] sm:w-[16cqw] md:w-[14cqw] -rotate-6 hover:rotate-6 transition-all duration-500 ease-in-out rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer"
+                    >
+                        <div className="relative overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl bg-(--bg-secondary-color) aspect-square">
+                            <img
+                                src="https://images.unsplash.com/photo-1637160151663-a410315e4e75?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                alt="Smartwatch"
+                            />
+                        </div>
+
+                        <div className="absolute bottom-0 hidden md:flex flex-col p-2 bg-linear-to-b from-black/0 to-black/80 w-full">
+                            <h3 className="font-inter text-xl font-semibold text-white tracking-tight">
+                                Smartwatch
+                            </h3>
+                            <p className="font-space text-sm text-white/55">
+                                Health on your wrist.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

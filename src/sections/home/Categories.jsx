@@ -7,7 +7,7 @@ const Categories = ({ categories, selectedCategory, handleCategoryClick, getCate
 
     return (
         <>
-            <section className="hidden py-16 md:py-20 border-b border-(--border-color)">
+            <section className="hidden py-16 md:py-20 zborder-b border-(--border-color)">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-5">
                     <div>
                         <p className="font-space text-xs uppercase tracking-[0.2em] text-(--text-muted)">
@@ -55,7 +55,7 @@ const Categories = ({ categories, selectedCategory, handleCategoryClick, getCate
                 </div>
             </section>
 
-            <section className="py-16 md:py-24 border-b border-(--border-color)">
+            <section className="py-16 md:py-24 zborder-b border-(--border-color)">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-10">
                     <div>
@@ -91,7 +91,7 @@ const Categories = ({ categories, selectedCategory, handleCategoryClick, getCate
                                 category={category}
                                 index={index}
                                 categoryImage={categoryImage}
-                                onClick={() => navigate(`/products?category=${encodeURIComponent(category.slug)}`)}
+                                onClick={() => navigate(`/products?category=${category.slug}`)}
                             />
                         );
                     })}

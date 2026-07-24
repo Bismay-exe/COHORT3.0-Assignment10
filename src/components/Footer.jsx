@@ -1,4 +1,5 @@
-import { Moon } from "lucide-react";
+import { RiGithubLine, RiInstagramLine, RiLinkedinLine, RiTwitterLine } from "@remixicon/react";
+import { GitBranchPlus, Moon } from "lucide-react";
 import { useNavigate } from "react-router";
 
 const Footer = () => {
@@ -7,13 +8,13 @@ const Footer = () => {
 
 
     return (
-        <footer className="max-w-[1920px] w-full xbg-linear-to-t from-(--bg-secondary-color) to-transparent text-(--text-color) border-t border-(--border-color) px-4 md:px-8 pt-12 pb-6">
+        <footer className="max-w-[1920px] w-full xbg-linear-to-t from-(--bg-secondary-color) to-transparent text-(--text-color) px-4 md:px-8">
 
             {/* Main Footer */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 border-t border-(--border-color) pt-12 pb-6">
 
                 {/* Brand */}
-                <div>
+                <div className="md:col-span-2 lg:col-span-1">
                     <a className="font-instrument italic text-5xl cursor-pointer">
                         SkyMart
                     </a>
@@ -26,7 +27,7 @@ const Footer = () => {
 
 
                 {/* Shop */}
-                <div>
+                <div className="col-span-1">
                     <h3 className="font-space tracking-wider text-lg mb-4">
                         Shop
                     </h3>
@@ -46,13 +47,13 @@ const Footer = () => {
 
 
                 {/* Support */}
-                <div>
+                <div className="col-span-1">
                     <h3 className="font-space tracking-wider text-lg mb-4">
                         Support
                     </h3>
 
                     <div className="flex flex-col items-start gap-3 text-(--text-muted)">
-                        <a className="underline-effect hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
+                        <a onClick={() => navigate("/about")} className="underline-effect hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
                             About Us
                         </a>
                         <a className="underline-effect hover:text-(--text-color) transition-all duration-500 ease-in-out font-space cursor-pointer">
@@ -66,27 +67,27 @@ const Footer = () => {
 
 
                 {/* Socials */}
-                <div>
+                <div className="col-span-1">
                     <h3 className="font-space tracking-wider text-lg mb-4">
                         Follow Us
                     </h3>
 
                     <div className="flex items-center gap-2">
 
-                        <a className="p-3 border border-(--border-color) rounded-xl hover:bg-(--hover-bg-color) transition-all duration-300 cursor-pointer">
-                            <Moon size={20} />
+                        <a href="https://github.com/Bismay-exe/COHORT3.0-Assignment10" className="p-3 border border-(--border-color) rounded-xl hover:bg-(--hover-bg-color) transition-all duration-300 cursor-pointer">
+                            <RiGithubLine size={20} />
                         </a>
 
-                        <a className="p-3 border border-(--border-color) rounded-xl hover:bg-(--hover-bg-color) transition-all duration-300 cursor-pointer">
-                            <Moon size={20} />
+                        <a href="" className="p-3 border border-(--border-color) rounded-xl hover:bg-(--hover-bg-color) transition-all duration-300 cursor-pointer">
+                            <RiLinkedinLine size={20} />
                         </a>
 
-                        <a className="p-3 border border-(--border-color) rounded-xl hover:bg-(--hover-bg-color) transition-all duration-300 cursor-pointer">
-                            <Moon size={20} />
+                        <a href="" className="p-3 border border-(--border-color) rounded-xl hover:bg-(--hover-bg-color) transition-all duration-300 cursor-pointer">
+                            <RiTwitterLine size={20} />
                         </a>
 
-                        <a className="p-3 border border-(--border-color) rounded-xl hover:bg-(--hover-bg-color) transition-all duration-300 cursor-pointer">
-                            <Moon size={20} />
+                        <a href="https://www.instagram.com/bismay.exe" className="p-3 border border-(--border-color) rounded-xl hover:bg-(--hover-bg-color) transition-all duration-300 cursor-pointer">
+                            <RiInstagramLine size={20} />
                         </a>
 
                     </div>

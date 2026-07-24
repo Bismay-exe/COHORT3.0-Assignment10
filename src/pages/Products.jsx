@@ -111,7 +111,7 @@ const Products = () => {
   }
 
   return (
-    <div>
+    <main className="max-w-[1920px] mx-auto">
       <div className="p-8 md:p-12 flex flex-col sm:flex-row justify-start items-start sm:gap-6">
         <h1 className="font-inter font-semibold text-(--text-color) text-5xl md:text-6xl uppercase tracking-tighter flex justify-start items-end">
           All
@@ -126,7 +126,7 @@ const Products = () => {
       </div>
 
       {/* Search, Categories, and Sort Section */}
-      <div className="max-w-[1920px] mx-auto px-4 md:px-8 pb-8 xborder-b border-(--border-color)">
+      <div className="px-4 md:px-8 pb-8 xborder-b border-(--border-color)">
         <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
           {/* Search */}
           <div className="relative w-full md:max-w-md">
@@ -187,7 +187,7 @@ const Products = () => {
         </div>
       </div>
 
-      <div className="max-w-[1920px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 p-4 md:p-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 p-4 md:p-8">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((elem) => {
             return <ProductCards key={elem.id} product={elem} />;
@@ -203,7 +203,7 @@ const Products = () => {
           </div>
         )}
       </div>
-    </div>
+    </main>
   );
 };
 

@@ -6,7 +6,7 @@ const NewArrival = ({ newArrivals }) => {
     const navigate = useNavigate();
 
     return (
-        <section className="py-16 md:py-24 border-t border-(--border-color)">
+        <section className="py-16 md:py-24 zborder-t border-(--border-color)">
             <div className="flex items-end justify-between gap-5 mb-10">
                 <div>
                     <p className="font-space text-xs uppercase tracking-[0.2em] text-(--text-muted)">
