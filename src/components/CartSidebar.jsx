@@ -1,13 +1,17 @@
 import { useContext } from "react";
 import { MyStore } from "../contexts/MyContext";
-import { ArrowRight, ShoppingBag, ShoppingCart, X } from "lucide-react";
+import { ArrowRight, PackageCheck, ShoppingBag, ShoppingCart, X } from "lucide-react";
 import CartCard from "./CartCard";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const CartSidebar = () => {
-    let { isCartOpen, setIsCartOpen, cartItems, totalQuantity } =
+    let { isCartOpen, setIsCartOpen, cartItems, totalQuantity, setCartItems } =
         useContext(MyStore);
 
-    const subtotal = cartItems.reduce((total, item) => total + item.price, 0);
+    const subtotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+
+    const navigate = useNavigate();
 
     return (
         <>
@@ -109,7 +113,23 @@ const CartSidebar = () => {
                         </div>
 
                         {/* Checkout */}
-                        <button className="w-full flex items-center justify-center gap-2 mt-5 py-4 rounded-xl bg-(--text-color) text-(--bg-color) font-space tracking-wide group cursor-pointer">
+                        <button
+                            onClick={() => {
+                                setCartItems([]);
+                                setIsCartOpen(false);
+                                navigate("/products");
+                                toast.custom((t) => (
+                                    <div
+                                        className={`${t.visible ? 'animate-custom-enter' : 'animate-custom-leave'
+                                            } max-w-md bg-(--green-bg) backdrop-blur-lg shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-(--green) ring-opacity-5 p-4`}
+                                    >
+                                        <div className="shrink-0 pt-0.5 flex items-center gap-2 text-(--green) font-inter font-semibold">
+                                            <PackageCheck size={20} className="fill-(--green-bg)" /> Order placed! 🎉
+                                        </div>
+                                    </div>
+                                ));
+                            }}
+                            className="w-full flex items-center justify-center gap-2 mt-5 py-4 rounded-xl bg-(--text-color) text-(--bg-color) font-space tracking-wide group cursor-pointer">
                             Checkout
                             <ArrowRight
                                 size={18}

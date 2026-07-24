@@ -1,6 +1,7 @@
-import { Minus, Plus, Trash2 } from "lucide-react";
+import { Minus, PackageMinus, Plus, Trash2 } from "lucide-react";
 import { useContext } from "react";
 import { MyStore } from "../contexts/MyContext";
+import toast from "react-hot-toast";
 
 const CartCard = ({ product }) => {
     let { setCartItems, incrementQuantity, decrementQuantity } =
@@ -27,10 +28,22 @@ const CartCard = ({ product }) => {
                         </p>
 
                         <button
-                            onClick={() =>
+                            onClick={() =>{
                                 setCartItems((prev) =>
                                     prev.filter((item) => item.id !== product.id),
                                 )
+                                
+                                toast.custom((t) => (
+                                    <div
+                                        className={`${t.visible ? 'animate-custom-enter' : 'animate-custom-leave'
+                                            } max-w-md bg-(--red-bg) backdrop-blur-lg shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-(--red) ring-opacity-5 p-4`}
+                                    >
+                                        <div className="shrink-0 pt-0.5 flex items-center gap-2 text-(--red) font-inter font-semibold">
+                                            <PackageMinus size={20} className="fill-(--red-bg)" />Product removed from cart
+                                        </div>
+                                    </div>
+                                ));
+                            }
                             }
                             className="shrink-0 text-(--text-muted) hover:text-(--red) transition-colors duration-300 cursor-pointer"
                         >

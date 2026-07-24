@@ -12,7 +12,6 @@ import {
     X,
     Heart,
 } from "lucide-react";
-import toast from "react-hot-toast";
 import { useAuth } from "../hooks/useAuth";
 
 const Navbar = () => {

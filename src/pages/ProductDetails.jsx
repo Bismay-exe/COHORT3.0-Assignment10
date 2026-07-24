@@ -13,10 +13,12 @@ import {
     PackageCheck,
     PackageMinus,
     HeartOff,
+    HeartIcon,
 } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { MyStore } from "../contexts/MyContext";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
     let {
@@ -154,8 +156,8 @@ const ProductDetails = () => {
                             <div className="flex items-center gap-2">
                                 <span
                                     className={`w-2 h-2 rounded-full ${singleProductData.stock <= 5
-                                            ? "bg-yellow-500"
-                                            : "bg-green-500"
+                                        ? "bg-yellow-500"
+                                        : "bg-green-500"
                                         }`}
                                 />
 
@@ -268,7 +270,20 @@ const ProductDetails = () => {
                                     </div>
                                 ) : (
                                     <button
-                                        onClick={() => addToCart(singleProductData)}
+                                        onClick={() => {
+                                            addToCart(singleProductData);
+                                            
+                                toast.custom((t) => (
+                                    <div
+                                        className={`${t.visible ? 'animate-custom-enter' : 'animate-custom-leave'
+                                            } max-w-md bg-(--green-bg) backdrop-blur-lg shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-(--green) ring-opacity-5 p-4`}
+                                    >
+                                        <div className="shrink-0 pt-0.5 flex items-center gap-2 text-(--green) font-inter font-semibold">
+                                            <PackageCheck size={20} className="fill-(--green-bg)" />Product added to cart
+                                        </div>
+                                    </div>
+                                ));
+                                        }}
                                         className="group flex-1 flex items-center justify-between px-5 py-4 rounded-xl bg-(--text-color) text-(--bg-color) cursor-pointer"
                                     >
                                         <div className="flex items-center gap-3">
@@ -282,10 +297,29 @@ const ProductDetails = () => {
                                 )}
 
                                 <button
-                                    onClick={() => toggleWishlist(singleProductData)}
+                                    onClick={() => {
+                                        toggleWishlist(singleProductData);
+                                        toast.custom((t) => (
+                                            <div
+                                                className={`${t.visible ? 'animate-custom-enter' : 'animate-custom-leave'
+                                                    } max-w-md backdrop-blur-lg shadow-lg rounded-lg pointer-events-auto flex ring-1 p-4 ${isInWishlist ? "ring-(--red) bg-(--red-bg) text-(--red)" : "ring-(--pink) bg-(--pink-bg) text-(--pink)"}`}
+                                            >
+                                                <div className="shrink-0 pt-0.5 flex items-center gap-2 font-inter font-semibold">
+                                                    {isInWishlist ?
+                                                        <>
+                                                            <HeartOff size={20} className="fill-(--red) text-(--red)" />Product removed from Wishlist.
+                                                        </>
+                                                        : <>
+                                                            <HeartIcon size={20} className="fill-(--pink) text-(--pink)" />Product added to Wishlist.
+                                                        </>
+                                                    }
+                                                </div>
+                                            </div>
+                                        ));
+                                    }}
                                     className={`aspect-square p-4 rounded-xl border flex items-center justify-center transition-all duration-300 ease-in-out cursor-pointer ${isInWishlist
-                                            ? "bg-(--pink-bg) border-(--pink-bg) text-(--pink)"
-                                            : "border-(--border-color) bg-(--bg-color) text-(--text-muted) hover:border-(--pink-bg) hover:text-(--pink) hover:bg-(--pink-bg)"
+                                        ? "bg-(--pink-bg) border-(--pink-bg) text-(--pink)"
+                                        : "border-(--border-color) bg-(--bg-color) text-(--text-muted) hover:border-(--pink-bg) hover:text-(--pink) hover:bg-(--pink-bg)"
                                         }`}
                                 >
                                     {isInWishlist ? (

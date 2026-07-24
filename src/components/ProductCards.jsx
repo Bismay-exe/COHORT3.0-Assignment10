@@ -1,7 +1,8 @@
-import { Heart, Minus, Plus, ShoppingBag, Star } from "lucide-react";
+import { Heart, HeartIcon, HeartOff, Minus, PackageCheck, Plus, ShoppingBag, Star, TriangleAlert } from "lucide-react";
 import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { MyStore } from "../contexts/MyContext";
+import toast from "react-hot-toast";
 
 const ProductCards = ({ product }) => {
     let { cartItems, addToCart, incrementQuantity, decrementQuantity, wishlist, toggleWishlist } = useContext(MyStore);
@@ -18,7 +19,7 @@ const ProductCards = ({ product }) => {
             <div
                 onClick={() => navigate(`/products/${product.id}`)}
                 className="relative overflow-hidden bg-(--bg-secondary-color) p-8 cursor-pointer"
-            >   
+            >
                 <img
                     src={product.thumbnail}
                     alt={product.title}
@@ -102,7 +103,19 @@ const ProductCards = ({ product }) => {
                         </div>
                     ) : (
                         <button
-                            onClick={() => addToCart(product)}
+                            onClick={() => {
+                                addToCart(product);
+                                toast.custom((t) => (
+                                    <div
+                                        className={`${t.visible ? 'animate-custom-enter' : 'animate-custom-leave'
+                                            } max-w-md bg-(--green-bg) backdrop-blur-lg shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-(--green) ring-opacity-5 p-4`}
+                                    >
+                                        <div className="shrink-0 pt-0.5 flex items-center gap-2 text-(--green) font-inter font-semibold">
+                                            <PackageCheck size={20} className="fill-(--green-bg)" />Product added to cart
+                                        </div>
+                                    </div>
+                                ));
+                            }}
                             className="group flex-1 flex items-center justify-center px-5 py-4 rounded-xl bg-(--text-color) text-(--bg-color) cursor-pointer"
                         >
                             <div className="flex items-center gap-3">
@@ -113,16 +126,32 @@ const ProductCards = ({ product }) => {
                         </button>
                     )}
 
-                    <button 
+                    <button
                         onClick={(e) => {
                             e.stopPropagation();
                             toggleWishlist(product);
+                            toast.custom((t) => (
+                                <div
+                                    className={`${t.visible ? 'animate-custom-enter' : 'animate-custom-leave'
+                                        } max-w-md backdrop-blur-lg shadow-lg rounded-lg pointer-events-auto flex ring-1 p-4 ${isInWishlist ? "ring-(--red) bg-(--red-bg) text-(--red)" : "ring-(--pink) bg-(--pink-bg) text-(--pink)"}`}
+                                >
+                                    <div className="shrink-0 pt-0.5 flex items-center gap-2 font-inter font-semibold">
+                                        {isInWishlist ?
+                                            <>
+                                                <HeartOff size={20} className="fill-(--red) text-(--red)" />Product removed from Wishlist.
+                                            </>
+                                            : <>
+                                                <HeartIcon size={20} className="fill-(--pink) text-(--pink)" />Product added to Wishlist.
+                                            </>
+                                        }
+                                    </div>
+                                </div>
+                            )); 
                         }}
-                        className={`aspect-square p-4 rounded-xl border flex items-center justify-center transition-all duration-300 ease-in-out group cursor-pointer ${
-                            isInWishlist
-                                ? "bg-(--pink-bg) border-(--pink-bg) text-(--pink)"
-                                : "border-(--border-color) bg-(--bg-color) text-(--text-muted) hover:text-(--pink) hover:bg-(--pink-bg) hover:border-(--pink-bg)"
-                        }`}>
+                        className={`aspect-square p-4 rounded-xl border flex items-center justify-center transition-all duration-300 ease-in-out group cursor-pointer ${isInWishlist
+                            ? "bg-(--pink-bg) border-(--pink-bg) text-(--pink)"
+                            : "border-(--border-color) bg-(--bg-color) text-(--text-muted) hover:text-(--pink) hover:bg-(--pink-bg) hover:border-(--pink-bg)"
+                            }`}>
                         <Heart
                             size={20}
                             className={`${isInWishlist ? "fill-current" : ""} group-hover:shadow-[0_25px_50px_-12px_var(--pink)]`}
@@ -130,7 +159,7 @@ const ProductCards = ({ product }) => {
                     </button>
                 </div>
             </div>
-        </article>
+        </article >
     );
 };
 

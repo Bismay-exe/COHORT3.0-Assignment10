@@ -1,5 +1,4 @@
 import { RiGithubLine, RiInstagramLine, RiLinkedinLine, RiTwitterLine } from "@remixicon/react";
-import { GitBranchPlus, Moon } from "lucide-react";
 import { useNavigate } from "react-router";
 
 const Footer = () => {
