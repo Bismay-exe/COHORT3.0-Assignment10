@@ -34,19 +34,6 @@ const LoginPage = () => {
                 everything synced across your devices.
               </p>
             </div>
-
-            {/* Register Link */}
-            <button
-              onClick={() => navigate("/auth/register")}
-              className="hidden flex group items-center gap-2 whitespace-nowrap font-inter text-base lg:text-lg text-(--text-muted) hover:text-(--text-color) transition-colors"
-            >
-              <span className="underline-effect cursor-pointer">Create Account</span>
-
-              <ArrowRight
-                size={18}
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </button>
           </div>
         </div>
 

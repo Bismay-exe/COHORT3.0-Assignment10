@@ -27,9 +27,10 @@ const Navbar = () => {
         <nav className="max-w-[1920px] sticky top-0 z-20 w-full h-auto flex items-center justify-between px-4 lg:px-8 py-2 lg:py-4 text-(--text-color)">
             <div className="absolute bg-linear-to-b from-(--bg-secondary-color) via-(--bg-color)/60 via-50% to-transparent w-full h-full top-0 left-0 z-[-1]" />
             <div className="lg:flex-1 w-full lg:w-auto flex items-center justify-between z-10">
-                <a className="bg-(--blur-bg-color) backdrop-blur-sm px-4 py-2 rounded-2xl font-instrument italic hover:scale-105 transform-3d hover:rotate-3d hover:rotate-y-360 transition-all duration-1000 ease-in-out cursor-pointer text-4xl lg:text-5xl">
+                <NavLink
+                    to="/" className="bg-(--blur-bg-color) backdrop-blur-sm px-4 py-2 rounded-2xl font-instrument italic hover:scale-105 transform-3d hover:rotate-3d hover:rotate-y-360 transition-all duration-1000 ease-in-out cursor-pointer text-4xl lg:text-5xl">
                     SkyMart
-                </a>
+                </NavLink>
             </div>
 
             <div className="hidden lg:flex items-center gap-8">
@@ -168,7 +169,6 @@ const Navbar = () => {
                                     </>
                                 )}
                             </NavLink>
-                            <div className="h-0.5 w-full bg-(--text-color)/50"></div>
                             <NavLink
                                 to="/wishlist"
                                 // onClick={() => setIsMobileMenuOpen(false)}
@@ -185,6 +185,7 @@ const Navbar = () => {
                                     </>
                                 )}
                             </NavLink>
+                            <div className="h-0.5 w-full bg-(--text-color)/50"></div>
                             <button
                                 onClick={() => {
                                     setIsMobileMenuOpen(false);

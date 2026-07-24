@@ -1,4 +1,4 @@
-import { HeartOff, Minus, Plus, ShoppingBag, Star, } from "lucide-react";
+import { HeartOff, Minus, Plus, ShoppingBag, Star } from "lucide-react";
 import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { MyStore } from "../contexts/MyContext";
@@ -20,9 +20,8 @@ const WishListCards = ({ product }) => {
     const isInWishlist = wishlist.some((item) => item.id === product.id);
 
     return (
-        <article className="group flex gap-4 rounded-3xl border border-(--border-color) bg-(--secondary-bg) p-2 md:p-3 transition-all duration-300 hover:border-(--text-muted)">
+        <article className="group flex gap-4 rounded-3xl border border-(--border-color) bg-(--secondary-bg) p-2 md:p-3 transition-all duration-300 hover:border-(--text-muted) z-10">
             {/* IMAGE */}
-
             <div
                 onClick={() => navigate(`/products/${product.id}`)}
                 className="w-28 h-28 sm:w-36 sm:h-36 shrink-0 rounded-2xl bg-[#f3f0e8] flex items-center justify-center cursor-pointer"
@@ -35,10 +34,7 @@ const WishListCards = ({ product }) => {
             </div>
 
             {/* CONTENT */}
-
             <div className="flex-1 min-w-0 flex flex-col justify-between">
-                {/* TOP */}
-
                 <div>
                     <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
@@ -72,8 +68,6 @@ const WishListCards = ({ product }) => {
                         <span className="font-space text-xs">{product.rating}</span>
                     </div>
                 </div>
-
-                {/* BOTTOM */}
 
                 <div className="flex items-end justify-between gap-3">
                     <div>

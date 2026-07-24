@@ -2,38 +2,24 @@ import { Heart } from "lucide-react";
 
 const Hero = ({ wishlist }) => {
     return (
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-(--border-color) pb-8">
-            <div>
-                <p className="font-space text-xs uppercase tracking-[0.25em] text-(--text-muted)">
-                    Your Collection
-                </p>
+        <div className="relative pb-12 md:pb-16 flex flex-col items-center justify-center text-center overflow-hidden z-0">
+            <h1 className="font-inter text-[6rem] md:text-[10rem] lg:text-[24rem] leading-[0.8] text-(--text-color) tracking-tighter">
+                Wishlist.
+            </h1>
 
-                <h1 className="font-inter text-5xl md:text-7xl font-semibold tracking-tighter mt-4">
-                    Wishlist.
-                </h1>
+            <p className="font-space text-xs md:text-sm text-(--text-muted) my-8 md:my-10 max-w-md mx-auto uppercase tracking-[0.3em]">
+                Your curated collection of favorites. Ready when you are.
+            </p>
 
-                <p className="font-space text-sm md:text-base text-(--text-muted) mt-5 max-w-lg leading-relaxed">
-                    Save products you love and come back whenever you're ready.
-                </p>
+            <div className="inline-flex items-center gap-3 bg-(--text-color) text-(--bg-color) px-6 py-3 rounded-xl shadow-2xl">
+                <Heart size={18} className="fill-(--bg-color)" />
+                <span className="font-space text-sm font-bold tracking-widest uppercase">
+                    {wishlist.length} Items Saved
+                </span>
             </div>
 
-            <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-2xl border border-(--border-color) flex items-center justify-center">
-                    <Heart size={24} />
-                </div>
-
-                <div>
-                    <p className="font-space text-xs uppercase tracking-[0.2em] text-(--text-muted)">
-                        Saved Products
-                    </p>
-
-                    <h2 className="font-inter text-4xl font-semibold">
-                        {wishlist.length}
-                    </h2>
-                </div>
-            </div>
         </div>
-    )
-}
+    );
+};
 
-export default Hero
+export default Hero;
